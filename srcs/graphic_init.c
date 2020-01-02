@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/16 12:00:33 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/02 19:04:34 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 int			ft_sdl_init(t_fdf *ptr, char *name)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
-		return (0);
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		ft_error((char *)SDL_GetError(), 2);
+	if (TTF_Init() < 0)
+		ft_error((char *)TTF_GetError(), 2);
 	if (!(ptr->window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED, 
 					SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0)))
-		return (0);
+		ft_error((char *)SDL_GetError(), 2);
 	else
 	{
 		if (!(ptr->renderer = SDL_CreateRenderer(ptr->window, -1, 0)))
-			return (0);
-//		ptr->font = TTF_OpenFont("calibri.ttf", 25);
+			ft_error((char *)SDL_GetError(), 2);
+		if (!(ptr->font = TTF_OpenFont("Fonts/antika/Antika.ttf", 175)))
+			ft_error((char *)TTF_GetError(), 2);
 //		ptr->texture = SDL_CreateTexture(ptr->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 500, 300);
 	}
 	return (1);
