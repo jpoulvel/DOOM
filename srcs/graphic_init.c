@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/02 19:04:34 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/06 13:07:10 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,31 @@ int			ft_sdl_init(t_fdf *ptr, char *name)
 	if (!(ptr->window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED, 
 					SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0)))
 		ft_error((char *)SDL_GetError(), 2);
-	else
-	{
+	//else
+	//{
 		if (!(ptr->renderer = SDL_CreateRenderer(ptr->window, -1, 0)))
 			ft_error((char *)SDL_GetError(), 2);
-		if (!(ptr->font = TTF_OpenFont("Fonts/antika/Antika.ttf", 175)))
-			ft_error((char *)TTF_GetError(), 2);
+		//if (!(ptr->font = TTF_OpenFont("Fonts/antika/Antika.ttf", 175)))
+			//ft_error((char *)TTF_GetError(), 2);//MOVED TO t_txt_init
 //		ptr->texture = SDL_CreateTexture(ptr->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 500, 300);
-	}
+	//}
+	return (1);
+}
+
+int			ft_txt_init(t_txt *txt)
+{
+	if (!(txt = malloc(sizeof(t_txt))))
+		return (NULL);
+	txt->txt_main = (surface);
+	txt->txt_sub = (surface);
+	if (!(txt->font = TTF_OpenFont("Fonts/antika/Antika.ttf", 175)))
+		ft_error((char *)TTF_GetError(), 2);
+	txt->txt_tex_main = (texture);
+	txt->txt_tex_sub = (texture);
+	txt->txt_rect_main = (Rect);
+	txt->txt_rect_sub = (Rect);
+	txt->txt_rect_through = (Rect);
+	txt->color = ft_hexa_to_ratio(SAND);
 	return (1);
 }
 
@@ -39,7 +56,9 @@ t_fdf			*ft_ptr_init(char *name)
 
 	if (!(ptr = malloc(sizeof(t_fdf))))
 		return (NULL);
-	if (!ft_sdl_init(ptr, name))
+	if (!(ft_sdl_init(ptr, name)))
+		return (NULL);
+	if (!(ft_txt_init(&ptr->txt))
 		return (NULL);
 //	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, WIDTH, HEIGHT, name);
 //	ptr->img_ptr = mlx_new_image(ptr->mlx_ptr, WIDTH, HEIGHT);

@@ -6,7 +6,7 @@
 #    By: pchambon <pchambon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 11:30:42 by jpoulvel          #+#    #+#              #
-#    Updated: 2019/06/03 12:49:11 by jpoulvel         ###   ########.fr        #
+#    Updated: 2019/12/17 17:28:18 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ $(NAME): $(OBJ)
 	@gcc -c $(FLAGS) $< -o $@
 
 clean: 
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

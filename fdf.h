@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/16 12:08:49 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/06 12:50:18 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define FDF_H
 
 # include "libft/libft.h"
-# include "frameworks/SDL2.framework/Headers/SDL.h"
-# include "frameworks/SDL2_ttf.framework/Headers/SDL_ttf.h"
+# include <SDL.h>
+# include <SDL_ttf.h>
 # include "libft/get_next_line.h"
 # include <stdio.h>//DEBUG
 # include <math.h>
 
 # define WIDTH 1600
 # define HEIGHT 1200
-# define NAME "FDF"
+# define NAME "MAP EDITOR"
 # define OCRE 0xffa700
 # define WHITE 0xf0f8ff
 # define BROWN 0xcd7f32
@@ -72,13 +72,27 @@ typedef struct		s_map
 	int				zmax;
 }					t_map;
 
+typedef struct		s_txt
+{
+	SDL_Surface		*txt_main;
+	SDL_Surface		*txt_sub;
+	TTF_Font		*font;
+	SDL_Texture		*txt_tex_main;
+	SDL_Texture		*txt_tex_sub;
+	SDL_Rect		txt_rect_main;
+	SDL_Rect		txt_rect_sub;
+	SDL_Rect		txt_through;
+	SDL_Color		txt_color;
+}					t_txt;
+
 typedef struct		s_fdf
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	SDL_Texture		*texture;
-	SDL_Surface		*surface;
-	TTF_Font		*font;
+	//SDL_Surface		*surface;
+	//TTF_Font		*font;
+	t_txt			*txt;
 	t_map			*map;
 	int				height;
 	Uint8			*pixels;
@@ -118,6 +132,7 @@ typedef	struct		s_bres
 t_map				*ft_parser(int fd);
 t_line				*ft_list_alloc(int fd);
 char				*ft_conform_line(char *str);
+void				ft_fill_image(t_fdf *img, t_map *map);
 void				ft_free_map(t_map *map);
 void				ft_free_line(t_line *list);
 void				ft_free_fdf(t_fdf *fdf);

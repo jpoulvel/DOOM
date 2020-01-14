@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:58:19 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/02 19:05:14 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/06 13:54:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_print_menu(t_fdf *img)
 	int			txt_w;
 	int			txt_h;
 
-	//img->font = TTF_OpenFont("Fonts/snowballs/Snowballs.ttf", 25);//already done in ft_sdl_init
+	//img->font = TTF_OpenFont("Fonts/snowballs/Snowballs.ttf", 25);//already done in ft_txt_init
 	ft_putstr("ok1");//DEBUG
 	testfont = img->font;
 	ft_putstr("ok2");//DEBUG

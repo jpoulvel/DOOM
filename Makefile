@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2019/12/16 12:26:35 by jpoulvel         ###   ########.fr        #
+#    Updated: 2019/12/17 18:10:48 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB_DIR = libft
 
 INCL = fdf.h \
 	   $(LIB_DIR)/libft.a \
-	   -I./frameworks/SDL2.framework/Versions/A/Headers \
+	#   -I./frameworks/SDL2.framework/Versions/A/Headers \
 	   -I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
 	   -I./frameworks/SDL2_image.framework/Versions/A/Headers \
 	   -I./frameworks/SDL2_mixer.framework/Headers \
@@ -39,7 +39,7 @@ INCL = fdf.h \
 
 FLAGS = -Wall -Wextra -Werror -I $(INCL)
 
-SDLFLAGS = `sdl2-config --cflags` `sdl2-config --libs`
+SDLFLAGS = -lSDL2-2.0.0  -lSDL2_ttf-2.0.0 `sdl2-config --cflags --libs`
 
 FRAMEWORKS = -F./frameworks \
 			 -rpath ./frameworks \
@@ -52,7 +52,7 @@ CC = gcc -g
 all: Makefile $(NAME)
 
 $(NAME): FORCE LIB $(OBJ)
-	@gcc -o $(NAME) $(FLAGS) $(OBJ) $(SDLFLAGS) $(FRAMEWORKS)
+	@gcc -o $(NAME) $(FLAGS) $(OBJ) $(SDLFLAGS)
 
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS) $(SDLFLAGS)
@@ -72,7 +72,7 @@ fclean: clean
 re: fclean $(NAME)
 
 san : FORCE LIB $(OBJ)
-	@gcc -o $(NAME) -fsanitize=address $(FLAGS) $(OBJ)
+	@gcc -o $(NAME) -fsanitize=address $(FLAGS) $(OBJ) $(SDLFLAGS)
 
 FORCE:
 
