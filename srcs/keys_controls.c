@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 12:04:10 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/20 12:52:41 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:45:24 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ void		ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e)
 			map->ox -= 10;
 		if (e.key.keysym.sym == SDLK_RIGHT)
 			map->ox += 10;
+		if (e.key.keysym.sym == 27)
+			exit(0);
 	}
 }
