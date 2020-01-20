@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/06 12:50:18 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/20 12:46:26 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@
 # define DEEP_BLUE 0x002fa7
 # define RED 0xe32636
 
+typedef	struct		s_walls
+{
+	int				point1[2];
+	int				point2[2];
+	struct s_walls	*next;
+}					t_walls;
+
+typedef struct		s_wlist
+{
+	int				id;
+	t_walls			wall;
+	struct s_wlist	*next;
+	struct s_wlist	*prev;
+}					t_wlist;
+
 typedef	struct		s_mouse
 {
 	int				posx;
@@ -40,6 +55,9 @@ typedef	struct		s_mouse
 	int				click1[2];
 	int				click2[2];
 	int				click;
+	int				nwalls;
+	t_walls			walls;
+	t_walls			prev;
 }					t_mouse;
 
 typedef	struct		s_color
@@ -70,19 +88,30 @@ typedef struct		s_map
 	float			base_h;
 	char			proj;
 	int				zmax;
+	int				endx;
+	int				endy;
 }					t_map;
+
+typedef struct		s_item
+{
+	SDL_Rect		rect;
+	SDL_Surface		*surface;
+	SDL_Texture		*texture;
+}					t_item;
 
 typedef struct		s_txt
 {
-	SDL_Surface		*txt_main;
-	SDL_Surface		*txt_sub;
+	t_item			*menu;
+	t_item			*item;
+	//SDL_Surface		*txt_menu;
+	//SDL_Surface		*txt_sub;
 	TTF_Font		*font;
-	SDL_Texture		*txt_tex_main;
-	SDL_Texture		*txt_tex_sub;
-	SDL_Rect		txt_rect_main;
-	SDL_Rect		txt_rect_sub;
+	//SDL_Texture		*txt_tex_menu;
+	//SDL_Texture		*txt_tex_sub;
+	//SDL_Rect		txt_rect_menu;
+	//SDL_Rect		txt_rect_sub;
 	SDL_Rect		txt_through;
-	SDL_Color		txt_color;
+	SDL_Color		color;
 }					t_txt;
 
 typedef struct		s_fdf
@@ -158,5 +187,9 @@ SDL_Color			ft_color_of_lower_element(t_point a, t_point b);
 void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
-void				ft_mouse_event(t_fdf *img, t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_fix_coords(t_mouse *mous, t_map *map);
+void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
+int					ft_even_odd(int i);
 #endif
