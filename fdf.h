@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/20 12:46:26 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:10:15 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ typedef	struct		s_bres
 t_map				*ft_parser(int fd);
 t_line				*ft_list_alloc(int fd);
 char				*ft_conform_line(char *str);
-void				ft_fill_image(t_fdf *img, t_map *map);
+void				ft_fill_image(t_fdf *img);
 void				ft_free_map(t_map *map);
 void				ft_free_line(t_line *list);
 void				ft_free_fdf(t_fdf *fdf);

@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2019/12/17 18:10:48 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/01/14 17:57:35 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS = srcs/main.c \
 		srcs/free_functions.c \
 		srcs/colorize.c \
 		srcs/mouse_controls.c \
-		srcs/ft_change_appearance.c
+		srcs/keys_controls.c \
+		srcs/ft_change_appearance.c \
+		srcs/tools.c
 
 OBJ = $(SRCS:.c=.o)
 

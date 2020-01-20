@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/18 15:28:56 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:10:01 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,8 @@ void			ft_print_lines(t_fdf *img, t_map *map)
 	}
 }
 
-void			ft_fill_image(t_fdf *img, t_map *map)
+void			ft_fill_image(t_fdf *img)
 {
-	map->base_gap = ft_gap(map);
-	map->base_h = ft_height(map);
-	ft_origin(map);
-	ft_print_lines(img, map);
+	ft_print_lines(img, img->map);
 	ft_print_menu(img);
 }
