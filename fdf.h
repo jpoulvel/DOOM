@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/20 16:10:15 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:37:58 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ typedef struct		s_fdf
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
-	SDL_Texture		*texture;
+	SDL_Texture		*map_texture;
+	SDL_Texture		*text_texture;
 	//SDL_Surface		*surface;
 	//TTF_Font		*font;
 	t_txt			*txt;
@@ -168,7 +169,7 @@ void				ft_free_fdf(t_fdf *fdf);
 void				ft_fdf(t_map *map);
 t_fdf				*ft_ptr_init(char *name);
 void				ft_print_lines(t_fdf *img, t_map *map);
-void				ft_print_menu(t_fdf *img);
+void				ft_render_text(t_fdf *img);
 void				ft_light_up_pixel(t_bres *bres, t_fdf *img);
 void				ft_origin(t_map *map);
 int					ft_gap(t_map *map);
@@ -192,4 +193,5 @@ void				ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e);
 void				ft_fix_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
+t_txt				*ft_txt_init(t_fdf *img);
 #endif
