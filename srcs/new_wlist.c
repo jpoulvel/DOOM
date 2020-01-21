@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wallfunct.c                                        :+:      :+:    :+:   */
+/*   new_wlist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/21 17:28:41 by aruiz-ba         ###   ########.fr       */
+/*   Created: 2019/12/02 13:51:48 by jmoucach          #+#    #+#             */
+/*   Updated: 2020/01/21 17:24:05 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../fdf.h"
 
-t_wall create_wall(t_vertex start, t_vertex end, t_vertex normal)
+t_wlist *new_wlist(t_wall wall, int id)
 {
-	t_wall new;
+	t_wlist *new;
 
-	new.start = create_vertex(start.x, start.y);
-	new.end = create_vertex(end.x, end.y);
-	new.normal = create_vertex(normal.x, normal.y);
-	return (new);
-}
-
-t_wall create_emptywall(void)
-{
-	t_wall new;
-	
-	new.start = create_vertex(0,0);
-	new.end = create_vertex(0,0);
-	new.normal = create_vertex(0,0);
+	if (!(new = (t_wlist*)malloc(sizeof(t_wlist))))
+		return (NULL);
+	new->id = id;
+	new->wall.start = create_vertex(wall.start.x, wall.start.y);
+	new->wall.end = create_vertex(wall.end.x, wall.end.y);
+	new->wall.normal = create_vertex(wall.normal.x, wall.normal.y);
+	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
