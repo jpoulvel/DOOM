@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/20 14:38:51 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:51:10 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void			loop_til_release()
 void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e)
 {
 	int			s;
+	t_vertex 		tma;
+	t_vertex 		tmb;
+	t_vertex 		tmn;
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
@@ -72,7 +75,15 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e)
 				loop_til_release();
 				SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
 				ft_fix_coords(mous, map);
+				/*
 				mous->nwalls = mous->click / 2;
+				tma.x = mous->click1[0]; 
+				tma.y = mous->click1[1];
+				tmb.x = mous->click2[0]; 
+				tmb.y = mous->click2[1];
+				tmn.x = tma.y - tmb.y;
+				tmn.y = -(tma.x - tmb.x);
+				create_wall(tma, tmb, tmn);*/
 				//DO THIS HEREft_save_wall(mous,);
 			}
 		}

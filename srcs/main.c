@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:39:42 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:55:17 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 		SDL_RenderPresent(img->renderer);
 		bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));
 		SDL_SetRenderDrawColor(img->renderer, 0, 0, 0, 0);
-		//SDL_RenderClear(img->renderer);
+		SDL_RenderClear(img->renderer);
 	}
 }
 

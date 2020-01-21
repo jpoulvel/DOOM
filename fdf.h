@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:37:58 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:49:49 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@
 # define BLUE 0x21abcd
 # define DEEP_BLUE 0x002fa7
 # define RED 0xe32636
+
+typedef struct		s_vertex
+{
+	double			x;
+	double			y;
+}					t_vertex;
+
+typedef struct s_wall
+{
+	t_vertex	start;
+	t_vertex	end;
+	t_vertex	normal;
+}				t_wall;
 
 typedef	struct		s_walls
 {
@@ -194,4 +207,5 @@ void				ft_fix_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
 t_txt				*ft_txt_init(t_fdf *img);
+t_wall 				create_wall(t_vertex start, t_vertex end, t_vertex normal);
 #endif
