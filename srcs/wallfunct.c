@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/14 18:09:33 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:03:59 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../fdf.h"
@@ -38,3 +38,4 @@ void add_wlist(t_wlist **list, t_wlist *new)
 		(*list)->prev = new;
 	(*list) = new;
 }
+//HELLO
