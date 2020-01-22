@@ -6,11 +6,27 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:30:20 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:12:41 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void			ft_print_walls(t_fdf *img, t_wlist *wlst, int nwalls)
+{
+	t_wlist *tm;
+
+	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
+	if(wlst != NULL)
+	{
+	//	printf("potato");
+		while (wlst)
+		{
+			SDL_RenderDrawLine(img->renderer, wlst->wall.start.x, wlst->wall.start.y, wlst->wall.end.x, wlst->wall.end.y);
+			wlst = wlst->next;
+		}
+	}
+}
 
 void			ft_trace_line(t_point a, t_point b, t_fdf *img)
 {

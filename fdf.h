@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 15:50:44 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:04:53 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct		s_point
 typedef struct		s_map
 {
 	t_point			**map;
+	t_wlist 		*wlst;
 	int				x;
 	int				y;
 	int				ox;
@@ -201,7 +202,7 @@ SDL_Color			ft_color_of_lower_element(t_point a, t_point b);
 void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
-void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst);
+void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
 void				ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e);
 void				ft_fix_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
@@ -211,4 +212,5 @@ t_wall 				create_wall(t_vertex start, t_vertex end, t_vertex normal);
 void				add_wlist(t_wlist **list, t_wlist *new);
 t_wlist 			*new_wlist(t_wall wall, int id);
 t_vertex			create_vertex(double x, double y);
+void				ft_print_walls(t_fdf *img, t_wlist *wlst, int nwalls);
 #endif

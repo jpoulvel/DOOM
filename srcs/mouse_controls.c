@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 16:05:25 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:13:51 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void			ft_put_point(t_fdf *img, t_map *map, t_mouse *mous)
 {
 	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
-	//SDL_RenderDrawLine(img->renderer, img->map->ox + mous->click1[0], img->map->oy + mous->click1[1], img->map->ox + mous->click2[0], img->map->oy + mous->click2[1]);
 	SDL_RenderDrawLine(img->renderer, mous->click1[0], mous->click1[1], mous->click2[0], mous->click2[1]);
 }
 
@@ -54,7 +53,7 @@ void			loop_til_release()
 	
 }
 
-void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst)
+void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 {
 	int			s;
 	t_vertex 		tma;
@@ -76,21 +75,25 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst)
 			{
 				loop_til_release();
 				SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
+				map->endx = map->ox + ((map->x - 1) * map->base_gap);
+				map->endy = map->oy + ((map->y - 1) * map->base_gap);
 				ft_fix_coords(mous, map);
 				tma = create_vertex(mous->click1[0], mous->click1[1]);
 				tmb = create_vertex(mous->click2[0], mous->click2[1]); 
 				tmn.x = tma.y - tmb.y;
 				tmn.y = -(tma.x - tmb.x);
-				if (wlst == NULL)
+				mous->nwalls++;
+				if (*wlst == NULL)
 				{
 					wall = create_wall(tma, tmb, tmn);
-					wlst = new_wlist(wall, 1);
+					*wlst = new_wlist(wall, mous->nwalls);
 				}
 				else
 				{
 					wall = create_wall(tma, tmb, tmn);
-					tmwlst = new_wlist(wall, 1);
-					add_wlist(&wlst, tmwlst);
+					wall = create_wall(tma, tmb, tmn);
+					tmwlst = new_wlist(wall, mous->nwalls);
+					add_wlist(wlst, tmwlst);
 				}
 			}
 		}
