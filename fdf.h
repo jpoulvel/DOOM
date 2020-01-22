@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:49:49 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 13:01:00 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef	struct		s_walls
 typedef struct		s_wlist
 {
 	int				id;
-	t_walls			wall;
+	t_wall			wall;
 	struct s_wlist	*next;
 	struct s_wlist	*prev;
 }					t_wlist;
@@ -208,4 +208,7 @@ void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
 t_txt				*ft_txt_init(t_fdf *img);
 t_wall 				create_wall(t_vertex start, t_vertex end, t_vertex normal);
+void				add_wlist(t_wlist **list, t_wlist *new);
+t_wlist 			*new_wlist(t_wall wall, int id);
+t_vertex			create_vertex(double x, double y);
 #endif

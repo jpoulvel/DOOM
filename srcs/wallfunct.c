@@ -6,10 +6,19 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/21 17:28:41 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 12:59:58 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../fdf.h"
+
+t_vertex create_vertex(double x, double y)
+{
+	t_vertex new;
+
+	new.x = x;
+	new.y = y;
+	return (new);
+}
 
 t_wall create_wall(t_vertex start, t_vertex end, t_vertex normal)
 {
@@ -29,12 +38,4 @@ t_wall create_emptywall(void)
 	new.end = create_vertex(0,0);
 	new.normal = create_vertex(0,0);
 	return (new);
-}
-
-void add_wlist(t_wlist **list, t_wlist *new)
-{
-	new->next = *list;
-	if (*list)
-		(*list)->prev = new;
-	(*list) = new;
 }
