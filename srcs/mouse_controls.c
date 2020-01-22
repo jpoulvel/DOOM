@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 12:58:26 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:05:25 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void			loop_til_release()
 	
 }
 
-void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e)
+void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst)
 {
 	int			s;
 	t_vertex 		tma;
 	t_vertex 		tmb;
 	t_vertex 		tmn;
+	t_wall	 		wall;
+	t_wlist 		*tmwlst;
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
@@ -75,10 +77,8 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e)
 				loop_til_release();
 				SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
 				ft_fix_coords(mous, map);
-		/*		tma.x = mous->click1[0]; 
-				tma.y = mous->click1[1];
-				tmb.x = mous->click2[0]; 
-				tmb.y = mous->click2[1];
+				tma = create_vertex(mous->click1[0], mous->click1[1]);
+				tmb = create_vertex(mous->click2[0], mous->click2[1]); 
 				tmn.x = tma.y - tmb.y;
 				tmn.y = -(tma.x - tmb.x);
 				if (wlst == NULL)
@@ -91,7 +91,7 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e)
 					wall = create_wall(tma, tmb, tmn);
 					tmwlst = new_wlist(wall, 1);
 					add_wlist(&wlst, tmwlst);
-				}*/
+				}
 			}
 		}
 		mous->click++;

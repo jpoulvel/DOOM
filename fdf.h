@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 13:01:00 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:50:44 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ SDL_Color			ft_color_of_lower_element(t_point a, t_point b);
 void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
-void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst);
 void				ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e);
 void				ft_fix_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
