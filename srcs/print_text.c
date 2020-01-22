@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:58:19 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:38:22 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/22 18:53:44 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_item			*ft_sub_init(TTF_Font *font, SDL_Color color, SDL_Renderer *renderer)
 	TTF_SizeText(font, "Sous-menu", &sub->rect.w, &sub->rect.h);
 	sub->rect.x = 10;
 	sub->rect.y = 10;
-	if (!(sub->surface = malloc(sizeof(SDL_Surface))))
-		return (NULL);
 	if (!(sub->surface = TTF_RenderText_Solid(font, "Sous-menu", color)))
 		ft_error((char *)TTF_GetError(), 2);
 	if (!(sub->texture = SDL_CreateTextureFromSurface(renderer,
@@ -49,8 +47,6 @@ t_item			*ft_menu_init(TTF_Font *font, SDL_Color color, SDL_Renderer *renderer)
 	TTF_SizeText(font, "Menu", &menu->rect.w, &menu->rect.h);
 	menu->rect.x = 10;
 	menu->rect.y = 10;
-	if (!(menu->surface = malloc(sizeof(SDL_Surface))))
-		return (NULL);
 	if (!(menu->surface = TTF_RenderText_Solid(font, "Menu", color)))
 		ft_error((char *)TTF_GetError(), 2);
 	if (!(menu->texture = SDL_CreateTextureFromSurface(renderer,
