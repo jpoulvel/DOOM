@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 12:04:10 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/23 14:18:39 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 16:54:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,6 @@ void		ft_keys_event(t_map *map, SDL_Event e, t_keys *key)
 {
 	key_press(key, e);
 	key_release(key, e);
-	if (key->up == 1)
-		map->oy -= 15;
-	if (key->down == 1)
-		map->oy += 10;
-	if (key->left == 1)
-		map->ox -= 10;
-	if (key->right == 1)
-		map->ox += 10;
-	if (key->zoom_in == 1)
-		map->base_gap += 1;
-	if (key->zoom_out == 1)
-		map->base_gap -= 1;
-	//printf("base_gap%f\n", map->base_gap);
+	ft_move(key, map);
+	ft_zoom(key, map);
 }

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 15:40:15 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 16:51:30 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,8 +203,8 @@ void				ft_get_controls(t_fdf *ptr);
 float				ft_height(t_map *map);
 int					ft_color(t_bres *bres, int color);
 void				ft_modify_height(int key, t_fdf *ptr);
-void				ft_zoom(int key, t_fdf *ptr);
-void				ft_move(int key, t_fdf *ptr);
+void				ft_zoom(t_keys *key, t_map *map);
+void				ft_move(t_keys *key, t_map *map);
 void				ft_iso_or_cart(int key, t_fdf *ptr);
 void				ft_positive_or_negative(int key, t_fdf *ptr);
 int					ft_color_positive(t_bres *bres);
