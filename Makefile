@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/01/23 12:52:18 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/01/23 16:04:34 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = srcs/main.c \
 		srcs/graphic_init.c \
 		srcs/free_functions.c \
 		srcs/colorize.c \
+		srcs/menu_controls.c \
 		srcs/mouse_controls.c \
 		srcs/keys_controls.c \
 		srcs/change_appearance.c \

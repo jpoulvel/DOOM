@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:28:17 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/23 13:26:46 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 16:01:47 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../fdf.h"
@@ -37,7 +37,6 @@ void	ft_sub_fix_coords_a(t_mouse *mous, t_map *map)
 		crossy++;
 	mous->click1[0] = crossx; 
 	mous->click1[1] = crossy; 
-	printf("pointA: (%i, %i)\n", crossx ,crossy);
 }
 
 void	ft_sub_fix_coords_b(t_mouse *mous, t_map *map)
@@ -61,7 +60,6 @@ void	ft_sub_fix_coords_b(t_mouse *mous, t_map *map)
 		crossy++;
 	mous->click2[0] = crossx; 
 	mous->click2[1] = crossy; 
-	printf("pointB: (%i, %i)\n", crossx ,crossy);
 }
 
 void	ft_fix_coords(t_mouse *mous, t_map *map)
