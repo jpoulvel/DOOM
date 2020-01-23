@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 18:04:53 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:52:51 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,6 @@ t_wall 				create_wall(t_vertex start, t_vertex end, t_vertex normal);
 void				add_wlist(t_wlist **list, t_wlist *new);
 t_wlist 			*new_wlist(t_wall wall, int id);
 t_vertex			create_vertex(double x, double y);
+void			ft_clear_and_render(t_fdf *img);
 void				ft_print_walls(t_fdf *img, t_wlist *wlst, int nwalls);
 #endif

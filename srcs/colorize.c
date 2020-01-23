@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 12:56:35 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/16 12:08:51 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:41:16 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ void			ft_attribute_color_to_points(t_map *map)
 		{
 			map->map[x][y].color = ft_height_to_color(map->map[x][y].z);
 			map->map[x][y].col = ft_hexa_to_ratio(map->map[x][y].color);
-		//	map->map[x][y].col.blue = (map->map[x][y].color & 0xff);
-		//	map->map[x][y].col.green = (map->map[x][y].color & 0xff00) >> 8;
-		//	map->map[x][y].col.red = (map->map[x][y].color & 0xff0000) >> 16;
-		//	map->map[x][y].col.alpha = 255;
 		}
 	}
 }
