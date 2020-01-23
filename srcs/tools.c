@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:28:17 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/22 16:51:24 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:26:46 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../fdf.h"
@@ -35,8 +35,9 @@ void	ft_sub_fix_coords_a(t_mouse *mous, t_map *map)
 		crossx++;
 	if (decimaly > (map->base_gap/2))
 		crossy++;
-	mous->click1[0] = map->ox + crossx * map->base_gap; 
-	mous->click1[1] = map->oy + crossy * map->base_gap; 
+	mous->click1[0] = crossx; 
+	mous->click1[1] = crossy; 
+	printf("pointA: (%i, %i)\n", crossx ,crossy);
 }
 
 void	ft_sub_fix_coords_b(t_mouse *mous, t_map *map)
@@ -58,8 +59,9 @@ void	ft_sub_fix_coords_b(t_mouse *mous, t_map *map)
 		crossx++;
 	if (decimaly > (map->base_gap/2))
 		crossy++;
-	mous->click2[0] = map->ox + crossx * map->base_gap; 
-	mous->click2[1] = map->oy + crossy * map->base_gap; 
+	mous->click2[0] = crossx; 
+	mous->click2[1] = crossy; 
+	printf("pointB: (%i, %i)\n", crossx ,crossy);
 }
 
 void	ft_fix_coords(t_mouse *mous, t_map *map)

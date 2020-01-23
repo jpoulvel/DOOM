@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 12:52:51 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:50:21 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define BLUE 0x21abcd
 # define DEEP_BLUE 0x002fa7
 # define RED 0xe32636
+# define ZOOM_IN 1073741911
+# define ZOOM_OUT 1073741910
 
 typedef struct		s_vertex
 {
@@ -60,6 +62,16 @@ typedef struct		s_wlist
 	struct s_wlist	*next;
 	struct s_wlist	*prev;
 }					t_wlist;
+
+typedef	struct		s_keys
+{
+	int				up;
+	int				down;
+	int				left;
+	int				right;
+	int				zoom_in;
+	int				zoom_out;
+}					t_keys;
 
 typedef	struct		s_mouse
 {
@@ -203,7 +215,7 @@ void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
 void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
-void				ft_keys_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_keys_event(t_map *map, SDL_Event e, t_keys *key);
 void				ft_fix_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);

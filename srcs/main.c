@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 12:54:11 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:46:47 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 	int			isquit;
 	SDL_Event	event;
 	t_wlist 	*wlst;
+	t_keys		key;
 
 	mous.click = 0;
 	mous.nwalls = 0;
@@ -24,11 +25,11 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 	wlst = NULL;
 	while (isquit == 0)
 	{
-		if (SDL_PollEvent(&event))
+		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
 				exit (0);
-			ft_keys_event(img->map, &mous, event);
+			ft_keys_event(img->map, event, &key);
 			ft_mouse_event(img->map, &mous, event, &wlst);
 		}
 		ft_print_lines(img, img->map);

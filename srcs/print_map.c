@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 18:12:41 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 14:02:04 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void			ft_print_walls(t_fdf *img, t_wlist *wlst, int nwalls)
 	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
 	if(wlst != NULL)
 	{
-	//	printf("potato");
 		while (wlst)
 		{
-			SDL_RenderDrawLine(img->renderer, wlst->wall.start.x, wlst->wall.start.y, wlst->wall.end.x, wlst->wall.end.y);
+			SDL_RenderDrawLine(img->renderer, img->map->ox + wlst->wall.start.x * img->map->base_gap, img->map->oy + wlst->wall.start.y * img->map->base_gap, img->map->ox + wlst->wall.end.x * img->map->base_gap, img->map->oy + wlst->wall.end.y * img->map->base_gap);
 			wlst = wlst->next;
 		}
 	}
