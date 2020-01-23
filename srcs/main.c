@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 13:46:47 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 14:10:01 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 				exit (0);
 			ft_keys_event(img->map, event, &key);
 			ft_mouse_event(img->map, &mous, event, &wlst);
+			ft_print_lines(img, img->map);
+			ft_print_walls(img, wlst, mous.nwalls);
+			ft_clear_and_render(img);
 		}
-		ft_print_lines(img, img->map);
-		ft_print_walls(img, wlst, mous.nwalls);
-		ft_clear_and_render(img);
 	}
 }
 
