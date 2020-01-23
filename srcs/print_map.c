@@ -6,22 +6,37 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 14:02:04 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:47:26 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void			ft_print_walls(t_fdf *img, t_wlist *wlst, int nwalls)
+void			print_point_box(t_fdf *img, t_wlist *wlst)
+{
+			SDL_SetRenderDrawColor(img->renderer, 0, 255, 255, 255);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) - 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap + 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
+
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) - 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
+			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap + 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
+}
+
+void			ft_print_walls(t_fdf *img, t_wlist *wlst)
 {
 	t_wlist *tm;
 
-	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
 	if(wlst != NULL)
 	{
 		while (wlst)
 		{
+			SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
 			SDL_RenderDrawLine(img->renderer, img->map->ox + wlst->wall.start.x * img->map->base_gap, img->map->oy + wlst->wall.start.y * img->map->base_gap, img->map->ox + wlst->wall.end.x * img->map->base_gap, img->map->oy + wlst->wall.end.y * img->map->base_gap);
+			print_point_box(img, wlst);
 			wlst = wlst->next;
 		}
 	}
