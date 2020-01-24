@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/24 14:30:26 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/24 16:12:34 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef	struct		s_mouse
 	int				click2[2];
 	int				click;
 	int				nwalls;
+	int				loop;
 	t_walls			walls;
 	t_walls			prev;
 }					t_mouse;
@@ -226,7 +227,8 @@ t_wlist 			*new_wlist(t_wall wall, int id);
 t_vertex			create_vertex(double x, double y);
 void			ft_clear_and_render(t_fdf *img);
 void				ft_print_walls(t_fdf *img, t_wlist *wlst);
-void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist *wlst);
+void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e);
 void				ft_print_buttons(t_fdf *img);
 void				loop_til_release();
+void				ft_print_pressed_button(t_fdf *img, int i);
 #endif
