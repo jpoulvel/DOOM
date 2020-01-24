@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:58:19 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/22 18:53:44 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/24 19:13:29 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void			ft_render_text(t_fdf *img)
 {
 	SDL_RenderCopy(img->renderer, img->txt->menu->texture, NULL,
 			&img->txt->menu->rect);
-	SDL_RenderCopy(img->renderer, img->txt->item->texture, NULL,
-			&img->txt->item->rect);
+/*	SDL_RenderCopy(img->renderer, img->txt->item->texture, NULL,
+			&img->txt->item->rect);*/
 }
 
 t_item			*ft_sub_init(TTF_Font *font, SDL_Color color, SDL_Renderer *renderer)
@@ -62,13 +62,13 @@ t_txt			*ft_txt_init(t_fdf *img)
 
 	if (!(txt_ptr = malloc(sizeof(t_txt))))
 		return (NULL);
-	if (!(txt_ptr->font = TTF_OpenFont("Fonts/antika/Antika.ttf", 32)))
+	if (!(txt_ptr->font = TTF_OpenFont("Fonts/BaroneysTextured.ttf", 32)))
 		ft_error((char *)TTF_GetError(), 2);
 	txt_ptr->color = ft_hexa_to_ratio(SAND);
 	if (!(txt_ptr->menu = ft_menu_init(txt_ptr->font, txt_ptr->color, img->renderer)))
 		return (NULL);
-	if (!(txt_ptr->item = ft_sub_init(txt_ptr->font, txt_ptr->color, img->renderer)))
-		return (NULL);
+/*	if (!(txt_ptr->item = ft_sub_init(txt_ptr->font, txt_ptr->color, img->renderer)))
+		return (NULL);*/
 	return (txt_ptr);
 //	if (!(ft_through_init(txt->font, txt->through))
 	//	return (NULL);
