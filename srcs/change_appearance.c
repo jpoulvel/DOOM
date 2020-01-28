@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:42:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 16:56:22 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:24:18 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_zoom(t_keys *key, t_map *map)
 void		ft_move(t_keys *key, t_map *map)
 {
 	if (key->up == 1)
-		map->oy -= 15;
+		map->oy -= 10;
 	if (key->down == 1)
 		map->oy += 10;
 	if (key->left == 1)

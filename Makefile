@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/01/23 16:04:34 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2020/01/28 13:11:14 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = srcs/main.c \
 		srcs/tools.c \
 		srcs/new_wlist.c \
 		srcs/wallfunct.c \
+		srcs/objfunct.c \
 		srcs/center_map.c \
 		srcs/render.c
 
