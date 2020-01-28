@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 14:22:49 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/12 12:55:42 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:09:28 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 char		*ft_conform_line(char *str)
 {

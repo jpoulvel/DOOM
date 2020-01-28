@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 16:40:32 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:37:38 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void			print_point_box(t_fdf *img, t_wlist *wlst)
 {

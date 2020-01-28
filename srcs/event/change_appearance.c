@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:42:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 13:24:18 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:41:07 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void		ft_modify_height(int key, t_fdf *ptr)
 {

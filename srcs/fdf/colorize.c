@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 12:56:35 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 12:41:16 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 SDL_Color	ft_hexa_to_ratio(int color)
 {

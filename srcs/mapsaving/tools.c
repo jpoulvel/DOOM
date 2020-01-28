@@ -6,10 +6,10 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:28:17 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/27 13:30:18 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:57:34 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void	ft_save_wall(t_mouse *mous)
 {

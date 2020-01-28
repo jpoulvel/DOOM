@@ -9,7 +9,7 @@
 /*   Updated: 2020/01/28 16:40:36 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../fdf.h"
+#include "../../fdf.h"
 
 t_vertex create_vertex(double x, double y)
 {
