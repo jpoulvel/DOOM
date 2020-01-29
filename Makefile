@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/01/28 17:04:26 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2020/01/29 17:13:31 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = srcs/main.c \
 		srcs/mapsaving/tools.c \
 		srcs/mapsaving/new_wlist.c \
 		srcs/mapsaving/wallfunct.c \
+		srcs/mapsaving/save_map.c \
 		srcs/mapsaving/objfunct.c 
 
 OBJ = $(SRCS:.c=.o)
