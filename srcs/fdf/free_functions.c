@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:04:47 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/13 12:29:36 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void		ft_free_map(t_map *map)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_change_appearance.c                             :+:      :+:    :+:   */
+/*   change_appearance.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/02 20:01:06 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/12/16 11:54:38 by jpoulvel         ###   ########.fr       */
+/*   Created: 2020/01/23 12:42:23 by jpoulvel          #+#    #+#             */
+/*   Updated: 2020/01/28 17:41:07 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void		ft_modify_height(int key, t_fdf *ptr)
 {
@@ -30,34 +30,27 @@ void		ft_modify_height(int key, t_fdf *ptr)
 	}
 }
 
-void		ft_zoom(int key, t_fdf *ptr)
+void		ft_zoom(t_keys *key, t_map *map)
 {
-	if (ptr->map->y < 100)
+	if (key->zoom_in == 1)
+		map->base_gap += 1;
+	if (key->zoom_out == 1)
 	{
-		if (key == 78 && ptr->map->base_gap >= 2)
-			ptr->map->base_gap -= 2;
-		if (key == 69)
-			ptr->map->base_gap += 2;
-	}
-	else
-	{
-		if (key == 78 && ptr->map->base_gap >= 2)
-			ptr->map->base_gap -= 1;
-		if (key == 69)
-			ptr->map->base_gap += 1;
+		if (map->base_gap >= 1)
+			map->base_gap -= 1;
 	}
 }
 
-void		ft_move(int key, t_fdf *ptr)
+void		ft_move(t_keys *key, t_map *map)
 {
-	if (key == 123)
-		ptr->map->ox -= 10;
-	if (key == 124)
-		ptr->map->ox += 10;
-	if (key == 126)
-		ptr->map->oy -= 10;
-	if (key == 125)
-		ptr->map->oy += 10;
+	if (key->up == 1)
+		map->oy -= 10;
+	if (key->down == 1)
+		map->oy += 10;
+	if (key->left == 1)
+		map->ox -= 10;
+	if (key->right == 1)
+		map->ox += 10;
 }
 
 void		ft_iso_or_cart(int key, t_fdf *ptr)

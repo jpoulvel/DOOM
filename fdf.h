@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/24 16:12:34 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:25:02 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ typedef struct		s_wlist
 	struct s_wlist	*prev;
 }					t_wlist;
 
+typedef struct		s_olist
+{
+	int				id;
+	t_vertex			obj;
+	struct s_olist	*next;
+	struct s_olist	*prev;
+}					t_olist;
+
 typedef	struct		s_keys
 {
 	int				up;
@@ -81,6 +89,7 @@ typedef	struct		s_mouse
 	int				click2[2];
 	int				click;
 	int				nwalls;
+	int				nobj;
 	int				loop;
 	t_walls			walls;
 	t_walls			prev;
@@ -215,9 +224,9 @@ SDL_Color			ft_color_of_lower_element(t_point a, t_point b);
 void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
-void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
+void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst, t_olist **olst);
 void				ft_keys_event(t_map *map, SDL_Event e, t_keys *key);
-void				ft_fix_coords(t_mouse *mous, t_map *map);
+void				ft_fix_wall_coords(t_mouse *mous, t_map *map);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
 t_txt				*ft_txt_init(t_fdf *img);
@@ -227,8 +236,14 @@ t_wlist 			*new_wlist(t_wall wall, int id);
 t_vertex			create_vertex(double x, double y);
 void			ft_clear_and_render(t_fdf *img);
 void				ft_print_walls(t_fdf *img, t_wlist *wlst);
-void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_print_obj(t_fdf *img, t_olist *olst);
 void				ft_print_buttons(t_fdf *img);
-void				loop_til_release();
 void				ft_print_pressed_button(t_fdf *img, int i);
+void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				loop_til_release();
+void				set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
+void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
+t_olist				*new_olist(t_vertex obj, int id);
+void				add_olist(t_olist **list, t_olist *new);
+void				ft_sub_fix_coords_a(t_mouse *mous, t_map *map);
 #endif

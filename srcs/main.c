@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/24 16:34:01 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:08:45 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 	int			isquit;
 	SDL_Event	event;
 	t_wlist 	*wlst;
+	t_olist 	*olst;
 	t_keys		key;
 
 	mous.click = 0;
 	mous.nwalls = 0;
+	mous.nobj = 0;
+	key.up = 0;
+	key.down = 0;
+	key.left = 0;
+	key.right = 0;
+	key.zoom_in = 0;
+	key.zoom_out = 0;
 	isquit = 0;
 	wlst = NULL;
+	olst = NULL;
 	while (isquit == 0)
 	{
 		while (SDL_PollEvent(&event))
@@ -30,18 +39,19 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 			if (event.type == SDL_QUIT)
 				exit (0);
 			ft_menu_event(img->map, &mous, event);
-			//ft_menu_event(img->map, &mous, event);
 			ft_keys_event(img->map, event, &key);
-			if(mous.loop == 1)
+			if (mous.loop == 1)
 			{
 				ft_print_pressed_button(img, 0);
-				ft_print_buttons(img);
-				ft_print_lines(img, img->map);
-				ft_print_walls(img, wlst);
-				ft_clear_and_render(img);
-				ft_mouse_event(img->map, &mous, event, &wlst);
-				ft_print_pressed_button(img, 0);
+			//	ft_print_buttons(img);
+			//	ft_print_lines(img, img->map);
+			//	ft_print_walls(img, wlst);
+			//	ft_clear_and_render(img);
 			}
+			ft_mouse_event(img->map, &mous, event, &wlst, &olst);
+			if (mous.loop == 1)
+				ft_print_pressed_button(img, 0);
+			ft_print_obj(img, olst);
 			ft_print_buttons(img);
 			ft_print_lines(img, img->map);
 			ft_print_walls(img, wlst);

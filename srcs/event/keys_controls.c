@@ -6,11 +6,11 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 12:04:10 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/23 16:54:36 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 13:23:45 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void		key_press(t_keys *key, SDL_Event e)
 {

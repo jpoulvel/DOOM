@@ -6,11 +6,11 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:51:48 by jmoucach          #+#    #+#             */
-/*   Updated: 2020/01/22 18:13:57 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:44:06 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 t_wlist *new_wlist(t_wall wall, int id)
 {
@@ -28,6 +28,27 @@ t_wlist *new_wlist(t_wall wall, int id)
 }
 
 void add_wlist(t_wlist **list, t_wlist *new)
+{
+	new->next = *list;
+	if (*list)
+		(*list)->prev = new;
+	(*list) = new;
+}
+
+t_olist *new_olist(t_vertex obj, int id)
+{
+	t_olist *new;
+
+	if (!(new = (t_olist*)malloc(sizeof(t_olist))))
+		return (NULL);
+	new->id = id;
+	new->obj = obj;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
+void add_olist(t_olist **list, t_olist *new)
 {
 	new->next = *list;
 	if (*list)

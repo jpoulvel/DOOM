@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 15:47:26 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:37:38 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void			print_point_box(t_fdf *img, t_wlist *wlst)
 {
@@ -28,8 +28,6 @@ void			print_point_box(t_fdf *img, t_wlist *wlst)
 
 void			ft_print_walls(t_fdf *img, t_wlist *wlst)
 {
-	t_wlist *tm;
-
 	if(wlst != NULL)
 	{
 		while (wlst)

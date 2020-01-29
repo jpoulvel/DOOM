@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:22:59 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/21 12:23:36 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:09:35 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void		ft_origin(t_map *map)
 {

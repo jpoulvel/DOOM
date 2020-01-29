@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/23 14:30:46 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 int			ft_sdl_init(t_fdf *ptr, char *name)
 {

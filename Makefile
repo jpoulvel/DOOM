@@ -6,30 +6,31 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/01/23 16:04:34 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2020/01/28 17:04:26 by aruiz-ba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 SRCS = srcs/main.c \
-		srcs/parsing.c \
-		srcs/additional_functions.c \
-		srcs/list_mgmt.c \
-		srcs/print_map.c \
-		srcs/print_text.c \
-		srcs/graphic_init.c \
-		srcs/free_functions.c \
-		srcs/colorize.c \
-		srcs/menu_controls.c \
-		srcs/mouse_controls.c \
-		srcs/keys_controls.c \
-		srcs/change_appearance.c \
-		srcs/tools.c \
-		srcs/new_wlist.c \
-		srcs/wallfunct.c \
-		srcs/center_map.c \
-		srcs/render.c
+		srcs/fdf/parsing.c \
+		srcs/fdf/additional_functions.c \
+		srcs/fdf/center_map.c \
+		srcs/fdf/graphic_init.c \
+		srcs/fdf/free_functions.c \
+		srcs/fdf/colorize.c \
+		srcs/fdf/list_mgmt.c \
+		srcs/draw/print_map.c \
+		srcs/draw/print_text.c \
+		srcs/draw/render.c \
+		srcs/event/menu_controls.c \
+		srcs/event/mouse_controls.c \
+		srcs/event/keys_controls.c \
+		srcs/event/change_appearance.c \
+		srcs/mapsaving/tools.c \
+		srcs/mapsaving/new_wlist.c \
+		srcs/mapsaving/wallfunct.c \
+		srcs/mapsaving/objfunct.c 
 
 OBJ = $(SRCS:.c=.o)
 

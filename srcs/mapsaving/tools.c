@@ -6,10 +6,10 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:28:17 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/23 16:01:47 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:57:34 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void	ft_save_wall(t_mouse *mous)
 {
@@ -62,7 +62,7 @@ void	ft_sub_fix_coords_b(t_mouse *mous, t_map *map)
 	mous->click2[1] = crossy; 
 }
 
-void	ft_fix_coords(t_mouse *mous, t_map *map)
+void	ft_fix_wall_coords(t_mouse *mous, t_map *map)
 {
 	if (mous->click1[0] < map->ox)
 		mous->click1[0] = map->ox;

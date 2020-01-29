@@ -6,11 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/24 15:50:09 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/28 18:12:06 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
 
 void			ft_put_point(t_fdf *img, t_map *map, t_mouse *mous)
 {
@@ -53,50 +53,16 @@ void			loop_til_release()
 	
 }
 
-void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
-{
-	int			s;
-	t_vertex 		tma;
-	t_vertex 		tmb;
-	t_vertex 		tmn;
-	t_wall	 		wall;
-	t_wlist 		*tmwlst;
+void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst, t_olist **olst) {
 
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
-			if ((ft_even_odd(mous->click) == 0))
-			{
-				loop_til_release();
-				SDL_GetMouseState(&mous->click1[0], &mous->click1[1]);
-			}
-			else
-			{
-				loop_til_release();
-				SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
-				map->endx = map->ox + ((map->x - 1) * map->base_gap);
-				map->endy = map->oy + ((map->y - 1) * map->base_gap);
-				ft_fix_coords(mous, map);
-				tma = create_vertex(mous->click1[0], mous->click1[1]);
-				tmb = create_vertex(mous->click2[0], mous->click2[1]); 
-				tmn.x = tma.y - tmb.y;
-				tmn.y = -(tma.x - tmb.x);
-				mous->nwalls++;
-				if (*wlst == NULL)
-				{
-					wall = create_wall(tma, tmb, tmn);
-					*wlst = new_wlist(wall, mous->nwalls);
-				}
-				else
-				{
-					wall = create_wall(tma, tmb, tmn);
-					wall = create_wall(tma, tmb, tmn);
-					tmwlst = new_wlist(wall, mous->nwalls);
-					add_wlist(wlst, tmwlst);
-				}
-			}
-			mous->click++;
+			if (mous->loop == 1)
+				set_walls(map, mous, e, wlst);
+			if (mous->loop == 0)
+				set_object(map, mous, e, olst);
 		}
 	}
 }
