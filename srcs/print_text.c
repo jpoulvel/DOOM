@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 15:58:19 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/24 19:13:29 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/24 19:17:26 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_txt			*ft_txt_init(t_fdf *img)
 	if (!(txt_ptr->menu = ft_menu_init(txt_ptr->font, txt_ptr->color, img->renderer)))
 		return (NULL);
 /*	if (!(txt_ptr->item = ft_sub_init(txt_ptr->font, txt_ptr->color, img->renderer)))
-		return (NULL);*/
+		return (NULL);*///Needed ony if we write sub_menu
 	return (txt_ptr);
 //	if (!(ft_through_init(txt->font, txt->through))
 	//	return (NULL);
