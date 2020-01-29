@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:53:31 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/24 19:34:24 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:27:00 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void			ft_print_buttons(t_fdf *img)
 void			ft_print_pressed_button(t_fdf *img, int i)
 {
 	SDL_SetRenderDrawColor(img->renderer, 255, 0, 0, 0);
-	if (i == 0)
+	if (i == 1)
 	{
 		SDL_RenderDrawLine(img->renderer, 1320, 120, 1550, 170);
 		SDL_RenderDrawLine(img->renderer, 1320, 120, 1550, 170);
 	}
-	if (i == 1)
+	if (i == 0)
 	{
 		SDL_RenderDrawLine(img->renderer, 1320, 180, 1550, 230);
 		SDL_RenderDrawLine(img->renderer, 1320, 180, 1550, 230);
