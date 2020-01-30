@@ -6,15 +6,15 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/30 15:59:43 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/30 19:43:55 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
-int	digit_num(int	a)
+int			digit_num(int a)
 {
-	int i;
+	int		i;
 
 	i = 1;
 	while (a >= 10)
@@ -25,12 +25,12 @@ int	digit_num(int	a)
 	return (i);
 }
 
-int	count_digits(t_wlist *wlst)
+int			count_digits(t_wlist *wlst)
 {
-	int	n;
+	int		n;
 
 	n = 0;
-	if(wlst != NULL)
+	if (wlst != NULL)
 	{
 		while (wlst)
 		{
@@ -43,42 +43,41 @@ int	count_digits(t_wlist *wlst)
 			wlst = wlst->next;
 		}
 	}
-	return(n);
+	return (n);
 }
 
-//char	*write_coords(t_wlist *wlst, char **data) { } 
-
-
-void	ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls)
+int			write_coords(t_wlist *wlst, int fd)
 {
-	FILE *file = NULL;
-	char *data;
-	int data_size;
-	t_wlist *tm;
+	ft_putstr_fd("w:", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.start.x), fd);
+	ft_putstr_fd(",", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.start.y), fd);
+	ft_putstr_fd(";", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.end.x), fd);
+	ft_putstr_fd(",", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.end.y), fd);
+	ft_putstr_fd(";", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.normal.x), fd);
+	ft_putstr_fd(",", fd);
+	ft_putstr_fd(ft_itoa(wlst->wall.normal.y), fd);
+	ft_putendl_fd(";", fd);
+	return (1);
+}
 
-	file = fopen("DOOM-map", "w");
+void		ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls)
+{
+	int		fd;
 
-	if (file == NULL)
-	{
-		ft_putstr("Unable to create file.\n");
-		exit(0); 
-	} 
-//	data = ft_strnew(nwalls); 
-	data_size = count_digits(wlst); 
-	printf("data_size: %i\n", data_size);
-	//w1x.1y.2x.2y.2x.2y.3x.3y.3x.3y
-	//9 digitos extras por wall
-/*	if(wlst != NULL)
+	if ((fd = open("saved_map", O_RDWR | O_CREAT | O_APPEND, 0666)) <= 0)
+		ft_error("Unable to create file", 1);
+	if (wlst != NULL)
 	{
 		while (wlst)
 		{
-			//write_coords(wlst, &data);
+			write_coords(wlst, fd);
 			wlst = wlst->next;
 		}
 	}
-	fputs(data, file);*/
-	fclose(file);
 	ft_putstr("File created succesfully\n");
 	exit(0);
 }
-
