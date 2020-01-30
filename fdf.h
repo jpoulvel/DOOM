@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/29 17:44:54 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:10:52 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,5 +247,5 @@ void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
 void				ft_sub_fix_coords_a(t_mouse *mous, t_map *map);
-void				ft_save_map(t_wlist **wlst, t_olist **olst);
+void				ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls);
 #endif

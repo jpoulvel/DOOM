@@ -6,9 +6,10 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/29 13:49:50 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:08:15 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../../fdf.h"
 
 t_vertex		create_vertex(double x, double y)
