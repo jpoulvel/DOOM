@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/30 15:08:15 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/03 15:28:34 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 	{
 		loop_til_release();
 		SDL_GetMouseState(&mous->click1[0], &mous->click1[1]);
+		ft_fix_coords(map, &mous->click1[0], &mous->click1[1]);
 	}
 	else
 	{
@@ -60,7 +61,7 @@ void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 		SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
 		map->endx = map->ox + ((map->x - 1) * map->base_gap);
 		map->endy = map->oy + ((map->y - 1) * map->base_gap);
-		ft_fix_wall_coords(mous, map);
+		ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
 		tma = create_vertex(mous->click1[0], mous->click1[1]);
 		tmb = create_vertex(mous->click2[0], mous->click2[1]); 
 		tmn.x = tma.y - tmb.y;

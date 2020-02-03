@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 15:10:52 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/03 15:25:50 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,8 @@ int					ft_height_to_color(int height);
 SDL_Color			ft_hexa_to_ratio(int color);
 void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst, t_olist **olst);
 void				ft_keys_event(t_map *map, SDL_Event e, t_keys *key);
-void				ft_fix_wall_coords(t_mouse *mous, t_map *map);
+void				ft_fix_coords(t_map *map, int *x, int *y);
+void				ft_sub_fix_coords(t_map *map, int *x, int *y);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
 t_txt				*ft_txt_init(t_fdf *img);
@@ -246,6 +247,5 @@ void				set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
 void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
-void				ft_sub_fix_coords_a(t_mouse *mous, t_map *map);
 void				ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls);
 #endif
