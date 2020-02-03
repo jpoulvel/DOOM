@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 15:19:16 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:45:07 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,38 @@ void			ft_fdf(t_map *map)
 	ft_infinite_loop(img, mouse);
 }
 
-int		ft_check_file(char *file)
+int		ft_open_existing_map(char *map_name)
 {
 	int	fd;
 
 	fd = 0;
-	if ((fd = open(file, O_DIRECTORY) > 0))
+	if ((fd = open(map_name, O_DIRECTORY) > 0))
 	{
 		close(fd);
 		fd = 0;
 	}
 	else
-		fd = open(file, O_RDONLY | O_NOFOLLOW);
+		fd = open(map_name, O_RDWR | O_NOFOLLOW | O_APPEND);
+	return (fd);
+}
+
+int		ft_create_map(char *map_name, char *height, char *width)
+{
+	int	fd;
+	int	h;
+	int	w;
+
+	if ((fd = open(map_name, O_RDONLY | O_NOFOLLOW)) > 0)
+		return (ft_error("Map already exists, we cannot create it", 2));
+	h = ft_atoi(height);
+	w = ft_atoi(width);
+	if (h >= 1000 || w >= 1000)
+		return (ft_error("Map should not exceed 1000 in height or width", 2));
+	fd = open(map_name, O_RDWR | O_CREAT | O_APPEND, 0666);
+	ft_putstr_fd(height, fd);
+	ft_putstr_fd(" ", fd);
+	ft_putendl_fd(width, fd);
+	ft_putendl("Map created successfully");
 	return (fd);
 }
 
@@ -85,15 +105,24 @@ int		main(int argc, char **argv)
 	int		fd;
 	t_map	*map;
 
-	if (argc != 2)
-		return (ft_error("usage: ./fdf map", 2));
-	if ((fd = ft_check_file(argv[1])) <= 0)
-		return (ft_error("Invalid file", 2));
+	if (argc == 2)
+	{
+		if ((fd = ft_open_existing_map(argv[1])) <= 0)
+			return (ft_error("Invalid file", 2));
+	}
+	else if (argc == 4)
+	{
+		if ((fd = ft_create_map(argv[1], argv[2], argv[3]) <= 0))
+			return (ft_error("Unable to create file", 2));
+	}
+	else
+		return (ft_error("usage for existing map: ./fdf existing_map\nusage for new map: ./fdf new_map height width", 2));
+	/*CHANGED BECAUSE THE MAP FORMAT HAS CHANGED SO DIFFERENT PARSING
 	if (!(map = ft_parser(fd)))
 	{
 		map != NULL ? ft_free_map(map) : 0;
 		return (ft_error("Invalid map", 2));
-	}
-	ft_fdf(map);
+	}*/
+//	ft_fdf(map);
 	return (0);
 }

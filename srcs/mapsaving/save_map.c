@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/30 19:43:55 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:17:04 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void		ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls)
 {
 	int		fd;
 
-	if ((fd = open("saved_map", O_RDWR | O_CREAT | O_APPEND, 0666)) <= 0)
-		ft_error("Unable to create file", 1);
+	if ((fd = open("saved_map", O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
+		ft_error("Unable to write in the map file", 1);
 	if (wlst != NULL)
 	{
 		while (wlst)
@@ -78,6 +78,6 @@ void		ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls)
 			wlst = wlst->next;
 		}
 	}
-	ft_putstr("File created succesfully\n");
+	ft_putstr("Map updated succesfully\n");
 	exit(0);
 }
