@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/03 16:45:07 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:35:51 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 			ft_clear_and_render_menu(img, wlst, olst);
 			ft_keys_event(img->map, event, &key);
 			ft_mouse_event(img->map, &mous, event, &wlst, &olst);
-			if (mous.loop == 2)
+			if (mous.loop == 3)
 				ft_save_map(wlst, olst, mous.nwalls);
 		}
 	}
@@ -117,12 +117,12 @@ int		main(int argc, char **argv)
 	}
 	else
 		return (ft_error("usage for existing map: ./fdf existing_map\nusage for new map: ./fdf new_map height width", 2));
-	/*CHANGED BECAUSE THE MAP FORMAT HAS CHANGED SO DIFFERENT PARSING
+	//CHANGED BECAUSE THE MAP FORMAT HAS CHANGED SO DIFFERENT PARSING
 	if (!(map = ft_parser(fd)))
 	{
 		map != NULL ? ft_free_map(map) : 0;
 		return (ft_error("Invalid map", 2));
-	}*/
-//	ft_fdf(map);
+	}
+	ft_fdf(map);
 	return (0);
 }

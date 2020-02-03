@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:53:31 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/29 17:06:20 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/03 18:37:13 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,32 @@ void			ft_print_buttons(t_fdf *img)
 	SDL_RenderDrawLine(img->renderer, 1320, 180, 1320, 230);
 	SDL_RenderDrawLine(img->renderer, 1550, 180, 1550, 230);
 
-	SDL_SetRenderDrawColor(img->renderer, 255, 255, 0, 0);
 
 	SDL_RenderDrawLine(img->renderer, 1320, 240, 1550, 240);
 	SDL_RenderDrawLine(img->renderer, 1320, 290, 1550, 290);
 	SDL_RenderDrawLine(img->renderer, 1320, 240, 1320, 290);
 	SDL_RenderDrawLine(img->renderer, 1550, 240, 1550, 290);
+
+	SDL_SetRenderDrawColor(img->renderer, 255, 255, 0, 0);
+
+	SDL_RenderDrawLine(img->renderer, 1320, 300, 1550, 300);
+	SDL_RenderDrawLine(img->renderer, 1320, 350, 1550, 350);
+	SDL_RenderDrawLine(img->renderer, 1320, 300, 1320, 350);
+	SDL_RenderDrawLine(img->renderer, 1550, 300, 1550, 350);
+
 }
 
 void			ft_print_pressed_button(t_fdf *img, int i)
 {
 	SDL_SetRenderDrawColor(img->renderer, 255, 0, 0, 0);
-	if (i == 2)
+	if (i == 3)
 	{
 		SDL_SetRenderDrawColor(img->renderer, 255, 255, 0, 0);
+		SDL_RenderDrawLine(img->renderer, 1320, 300, 1550, 350);
+		SDL_RenderDrawLine(img->renderer, 1320, 300, 1550, 350);	
+	}
+	if (i == 2)
+	{
 		SDL_RenderDrawLine(img->renderer, 1320, 240, 1550, 290);
 		SDL_RenderDrawLine(img->renderer, 1320, 240, 1550, 290);
 	}
@@ -64,7 +76,13 @@ void			ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e)
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
 			SDL_GetMouseState(&tmx, &tmy); // needs to be uncommented once this is fixed
-			if (tmx >= 1320 && tmx <= 1550 && tmy >= 230 && tmy <= 290)
+
+			if (tmx >= 1320 && tmx <= 1550 && tmy >= 300 && tmy <= 350)
+			{
+				mous->loop = 3;
+				loop_til_release();
+			}
+			if (tmx >= 1320 && tmx <= 1550 && tmy >= 240 && tmy <= 290)
 			{
 				mous->loop = 2;
 				loop_til_release();
