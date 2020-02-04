@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:12:06 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:26:18 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst, t_
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
+			if (mous->loop == 2)
+				rem_walls(map, mous, e, wlst);
 			if (mous->loop == 1)
 				set_walls(map, mous, e, wlst);
 			if (mous->loop == 0)

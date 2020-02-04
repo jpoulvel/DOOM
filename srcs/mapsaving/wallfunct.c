@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/03 18:38:36 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:16:13 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 		}
 		else
 		{
-			wall = create_wall(tma, tmb, tmn);
 			wall = create_wall(tma, tmb, tmn);
 			tmwlst = new_wlist(wall, mous->nwalls);
 			add_wlist(wlst, tmwlst);

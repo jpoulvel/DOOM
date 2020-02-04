@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/03 15:25:50 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:13:23 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ typedef struct s_wall
 	t_vertex	normal;
 }				t_wall;
 
-typedef	struct		s_walls
-{
-	int				point1[2];
-	int				point2[2];
-	struct s_walls	*next;
-}					t_walls;
-
 typedef struct		s_wlist
 {
 	int				id;
@@ -91,8 +84,8 @@ typedef	struct		s_mouse
 	int				nwalls;
 	int				nobj;
 	int				loop;
-	t_walls			walls;
-	t_walls			prev;
+	int				*lsid;
+	int				n_id;
 }					t_mouse;
 
 typedef	struct		s_color
@@ -248,4 +241,5 @@ void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
 void				ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls);
+void				rem_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst);
 #endif
