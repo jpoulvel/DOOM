@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/03 16:17:04 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/04 12:44:38 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ int			write_coords(t_wlist *wlst, int fd)
 {
 	ft_putstr_fd("w:", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.start.x), fd);
-	ft_putstr_fd(",", fd);
+	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.start.y), fd);
-	ft_putstr_fd(";", fd);
+	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.end.x), fd);
-	ft_putstr_fd(",", fd);
+	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.end.y), fd);
-	ft_putstr_fd(";", fd);
+	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.normal.x), fd);
-	ft_putstr_fd(",", fd);
+	ft_putstr_fd(" ", fd);
 	ft_putstr_fd(ft_itoa(wlst->wall.normal.y), fd);
-	ft_putendl_fd(";", fd);
+	ft_putendl_fd(" ", fd);
 	return (1);
 }
 

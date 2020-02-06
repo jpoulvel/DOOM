@@ -6,7 +6,7 @@
 /*   By: pchambon <pchambon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 12:22:16 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/01/28 14:36:40 by pchambon         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:48:55 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ char		**ft_mktab(char const *s, char c)
 		i = i + j;
 		j = 0;
 	}
-	tab[words + 1] = 0;
+	tab[words + 1] = NULL;
 	return (tab);
 }

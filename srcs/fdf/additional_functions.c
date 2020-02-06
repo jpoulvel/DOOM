@@ -6,17 +6,21 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 14:22:49 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 15:08:30 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/04 15:29:26 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
+/*
+** Replaces all other char than number, - or space into spaces
+*/
+
 char		*ft_conform_line(char *str)
 {
 	int		i;
 
-	i = 0;
+	i = 2;
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]) == 1 || str[i] == ' ' ||

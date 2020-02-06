@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 12:02:46 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:09:10 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/06 15:46:50 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_map			*ft_map_copy(t_line *list)
 	t_line		*tmp;
 	t_map		*map;
 	int			i;
-	char		*conform_line;
+//	char		*conform_line;
 
 	i = -1;
 	if (!list || !(map = malloc(sizeof(t_map))))
@@ -84,8 +84,8 @@ t_map			*ft_map_copy(t_line *list)
 	tmp = list;
 	while (++i < map->y)
 	{
-		conform_line = ft_conform_line(tmp->str);
-		map->map[i] = ft_fill_map(conform_line, &tmp->x);
+	//	conform_line = ft_conform_line(tmp->str);
+		map->map[i] = ft_fill_map(ft_conform_line(tmp->str), &tmp->x);
 		map->x = tmp->x;
 		tmp = tmp->next;
 	}
@@ -105,6 +105,25 @@ int				ft_check_equal_length(t_line *line)
 	}
 	return (1);
 }
+/*
+int				ft_line_to_walls(t_list *list, t_wlist **wlist)
+{
+	t_wlist		*tmp;
+	t_wlist		*tmp2;
+	t_wall		*wall;
+
+	if (*wlst == NULL)
+		{
+			wall = create_wall(tma, tmb, tmn);
+			*wlst = new_wlist(wall, mous->nwalls);
+		}
+		else
+		{
+			wall = create_wall(tma, tmb, tmn);
+			tmwlst = new_wlist(wall, mous->nwalls);
+			add_wlist(wlst, tmwlst);
+		}
+}*/
 
 t_map			*ft_parser(int fd)
 {
@@ -112,9 +131,9 @@ t_map			*ft_parser(int fd)
 	t_map		*map;
 
 	list = ft_list_alloc(fd);
-	map = ft_map_copy(list);
-	ft_attribute_color_to_points(map);
-	if (map == NULL || ft_check_equal_length(list) == 0)
+	//map = ft_map_copy(list);
+	//ft_attribute_color_to_points(map);//we do not have height yet
+	if (map == NULL /*|| ft_check_equal_length(list)*//* ft_line_to_walls(list, &(map->wlst)) == 0*/)
 	{
 		map != NULL ? ft_free_map(map) : 0;
 		list != NULL ? ft_free_line(list) : 0;

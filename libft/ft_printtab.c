@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:39:12 by jpoulvel          #+#    #+#             */
-/*   Updated: 2019/01/02 12:40:04 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:52:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	ft_print_tab(char **tab)
 	i = -1;
 	if (!(tab && tab[0]))
 		return ;
-	while (tab[++i][0])
+	while (tab[++i] != NULL)
 		ft_putendl(tab[i]);
 }
