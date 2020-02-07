@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 12:02:46 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/06 15:46:50 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:01:35 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,19 +127,20 @@ int				ft_line_to_walls(t_list *list, t_wlist **wlist)
 
 t_map			*ft_parser(int fd)
 {
-	t_line		*list;
+	t_wlist		*list;
 	t_map		*map;
 
 	list = ft_list_alloc(fd);
+	ft_putendl("List-alloc ok");//DEBUG	
 	//map = ft_map_copy(list);
 	//ft_attribute_color_to_points(map);//we do not have height yet
 	if (map == NULL /*|| ft_check_equal_length(list)*//* ft_line_to_walls(list, &(map->wlst)) == 0*/)
 	{
 		map != NULL ? ft_free_map(map) : 0;
-		list != NULL ? ft_free_line(list) : 0;
+		//list != NULL ? ft_free_line(list) : 0;//LEAVE this line but change ft_free_line so it takes a t_wlist and not a t_line
 		return (NULL);
 	}
-	ft_free_line(list);
+	//ft_free_line(list);
 	map->base_gap = ft_gap(map);
 	map->base_h = ft_height(map);
 	ft_origin(map);

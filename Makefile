@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/01/29 17:46:06 by aruiz-ba         ###   ########.fr        #
+#    Updated: 2020/02/07 14:51:50 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SRCS = srcs/main.c \
 		srcs/fdf/graphic_init.c \
 		srcs/fdf/free_functions.c \
 		srcs/fdf/colorize.c \
-		srcs/fdf/list_mgmt.c \
 		srcs/draw/print_map.c \
 		srcs/draw/print_text.c \
 		srcs/draw/render.c \
@@ -31,7 +30,10 @@ SRCS = srcs/main.c \
 		srcs/mapsaving/new_wlist.c \
 		srcs/mapsaving/wallfunct.c \
 		srcs/mapsaving/save_map.c \
-		srcs/mapsaving/objfunct.c 
+		srcs/mapsaving/objfunct.c \
+		srcs/parsing/map_reading.c \
+		srcs/parsing/first_line_processing.c \
+		srcs/parsing/elements_lines_processing.c
 
 OBJ = $(SRCS:.c=.o)
 

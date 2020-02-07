@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/03 15:25:50 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 14:52:13 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,25 @@
 
 typedef struct		s_vertex
 {
-	double			x;
-	double			y;
+	/*double*/int			x;
+	/*double*/int			y;
 }					t_vertex;
 
-typedef struct s_wall
+typedef struct		s_wall
 {
-	t_vertex	start;
-	t_vertex	end;
-	t_vertex	normal;
-}				t_wall;
-
+	char			type;
+	t_vertex		start;
+	t_vertex		end;
+	t_vertex		normal;
+}					t_wall;
+/*
 typedef	struct		s_walls
 {
 	int				point1[2];
 	int				point2[2];
 	struct s_walls	*next;
 }					t_walls;
-
+*/
 typedef struct		s_wlist
 {
 	int				id;
@@ -66,7 +67,7 @@ typedef struct		s_wlist
 typedef struct		s_olist
 {
 	int				id;
-	t_vertex			obj;
+	t_vertex		obj;
 	struct s_olist	*next;
 	struct s_olist	*prev;
 }					t_olist;
@@ -91,8 +92,8 @@ typedef	struct		s_mouse
 	int				nwalls;
 	int				nobj;
 	int				loop;
-	t_walls			walls;
-	t_walls			prev;
+	t_wall			walls;
+	t_wall			prev;
 }					t_mouse;
 
 typedef	struct		s_color
@@ -195,8 +196,17 @@ typedef	struct		s_bres
 	int				color;
 }					t_bres;
 
+/*
+**			PARSING
+*/
 t_map				*ft_parser(int fd);
-t_line				*ft_list_alloc(int fd);
+t_wlist				*ft_list_alloc(int fd);
+char				**ft_check_first_line(char *line);
+t_wlist				*ft_store_first_line(char **tab);
+char				**ft_check_elements(char *line);
+int					ft_store_elements(t_wlist **list, char **tab, int count);
+
+
 char				*ft_conform_line(char *str);
 void				ft_fill_image(t_fdf *img);
 void				ft_free_map(t_map *map);
@@ -248,4 +258,5 @@ void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
 void				ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls);
+t_wall				create_emptywall(void);
 #endif
