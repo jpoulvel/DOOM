@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/04 15:26:18 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:23:45 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void			loop_til_release()
 				break;
 		}
 	}
-	
 }
 
 void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst, t_olist **olst) {

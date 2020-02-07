@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:54:02 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/04 19:27:32 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:13:07 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ void	ft_filter_walls(t_wlist *wlst, t_mouse *mous)
 			wlst = wlst->next;
 		}
 	}
-	printf("ID's: %i\n", mous->lsid[0]);
 }
 //SEGFAULTS BETWEEN HERE
-void	ft_remove_list_element(t_wlist *wlst, int id)
+/*void	ft_remove_list_element(t_wlist *wlst, int id)
 {
 	while (id != wlst->id)
 	{
@@ -64,11 +63,44 @@ void	ft_remove_list_element(t_wlist *wlst, int id)
 			wlst->prev->next = wlst->next;
 		}
 		wlst->next->prev = NULL;
+	}	
+	if (wlst->next == NULL && wlst->prev == NULL) //que cohone e esto
+		wlst = NULL;
+	else
+		free(wlst);
+	//necesita hacer wlst == NULL si nos quedamos sin paredes
+}*/
+
+void ft_remove_list_element(t_wlist **list, int id)
+{
+	t_wlist *tmp;
+	t_wlist *p_stock;
+	t_wlist *n_stock;
+
+	if (*list)
+	        while ((*list)->prev)
+	    	    (*list) = (*list)->prev;
+	tmp = *list;
+	if (tmp->id == id)
+	{
+	    *list = tmp->next;
+	    free(tmp);
+	    return ;
 	}
-	free(wlst);
+	while (tmp != NULL && tmp->id != id)
+	    tmp = tmp->next;
+	if (tmp == NULL)
+	    return ;
+	p_stock = tmp->prev;
+	n_stock = tmp->next;
+	if (p_stock)
+	        p_stock->next = n_stock;
+	if (n_stock)
+	        n_stock->prev = p_stock;
+	free(tmp);
 }
 
-void	rem_common_point(t_wlist *wlst, t_mouse *mous)
+void	rem_common_point(t_wlist **wlst, t_mouse *mous)
 {
 	int	i;
 
@@ -77,17 +109,23 @@ void	rem_common_point(t_wlist *wlst, t_mouse *mous)
 	{
 		while (wlst)
 		{
-			if ((wlst->wall.start.x == mous->click2[0] && wlst->wall.start.y == mous->click2[1]) 
-				|| (wlst->wall.end.x == mous->click2[0] && wlst->wall.end.y == mous->click2[1]))
+			if (((*wlst)->wall.start.x == mous->click2[0] && (*wlst)->wall.start.y == mous->click2[1]) 
+				|| ((*wlst)->wall.end.x == mous->click2[0] && (*wlst)->wall.end.y == mous->click2[1]))
 			{
+				i = -1;
 				while (++i <= mous->n_id)
 				{
-					if (wlst->id == mous->lsid[i])
-						ft_remove_list_element(wlst, wlst->id);
+					if ((*wlst)->id == mous->lsid[i])
+						break ;
 				}
+				if ((*wlst)->id == mous->lsid[i])
+					break ;
 			}
-			wlst = wlst->next;
+			else
+				return ;
+			*wlst = (*wlst)->next;
 		}
+		ft_remove_list_element(wlst, (*wlst)->id);
 	}
 	free(mous->lsid);
 }
@@ -100,7 +138,6 @@ void	rem_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 	int			i;
 
 	i = -1;
-
 	if ((ft_even_odd(mous->click) == 0))
 	{
 		loop_til_release();
@@ -116,7 +153,7 @@ void	rem_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 		map->endx = map->ox + ((map->x - 1) * map->base_gap);
 		map->endy = map->oy + ((map->y - 1) * map->base_gap);
 		ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
-		rem_common_point(*wlst, mous);
+		rem_common_point(wlst, mous);
 	}
 	mous->click++;
 }

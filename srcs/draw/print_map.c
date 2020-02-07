@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/04 14:29:08 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:21:26 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void			ft_print_walls(t_fdf *img, t_wlist *wlst)
 {
 	if(wlst != NULL)
 	{
+		//printf("aqui?\n");
 		while (wlst)
 		{
 			SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);

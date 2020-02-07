@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/04 15:26:14 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 15:55:24 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 			ft_mouse_event(img->map, &mous, event, &wlst, &olst);
 			if (mous.loop == 3)
 				ft_save_map(wlst, olst, mous.nwalls);
+//			if (mous.loop == 2)
+//				printf("crashea por delante: %i\n", mous.loop);
 		}
 	}
 }
@@ -56,7 +58,7 @@ void			ft_fdf(t_map *map)
 
 	if (!(img = ft_ptr_init(NAME)))
 		return ;
-	mouse.loop = 0;
+	mouse.loop = 1;
 	img->map = map;
 	//ft_cart_to_iso(map);
 	ft_fill_image(img);
