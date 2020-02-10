@@ -6,12 +6,12 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:04:47 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:26:46 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
-
+/*
 void		ft_free_map(t_map *map)
 {
 	int		i;
@@ -20,7 +20,7 @@ void		ft_free_map(t_map *map)
 	while (++i < map->y)
 		free(map->map[i]);
 	free(map);
-}
+}*/
 
 void		ft_free_fdf(t_fdf *fdf)
 {

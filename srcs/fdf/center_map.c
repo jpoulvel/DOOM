@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:22:59 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:09:35 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:02:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void		ft_origin(t_map *map)
 {
-	map->ox = (WIDTH - ((map->map[map->y - 1][map->x - 1].x - map->map[0][0].x)
-				* map->base_gap)) / 2;
-	map->oy = (HEIGHT - ((map->map[map->y - 1][map->x - 1].y)
-			* map->base_gap)) / 2;
+	map->ox = (WIDTH - ((map->width - 1) * map->base_gap)) / 2;
+	map->oy = (HEIGHT - ((map->height - 1)* map->base_gap)) / 2;
 }
 
 float		ft_height(t_map *map)
@@ -40,8 +38,8 @@ int			ft_gap(t_map *map)
 	int		gap_H;
 	int		gap_W;
 
-	gap_H = (HEIGHT * 0.9) / map->x;
-	gap_W = (WIDTH * 0.9) / map->y;
+	gap_H = (HEIGHT * 0.9) / map->width;
+	gap_W = (WIDTH * 0.9) / map->height;
 	if (gap_H > gap_W)
 		return (gap_W);
 	else

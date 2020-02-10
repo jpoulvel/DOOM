@@ -6,28 +6,41 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/06 14:24:21 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:44:53 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
+t_point			create_point(float x, float y)
+{
+	t_point		new;
+
+	new.x = x;
+	new.y = y;
+	new.z = 1;//while we can give wanted altitudes
+	new.color = RED;//while we change it
+	new.col = ft_hexa_to_ratio(new.color);
+	return (new);
+}
+
 t_vertex		create_vertex(double x, double y)
 {
-	t_vertex	new;
+	t_vertex		new;
 
 	new.x = x;
 	new.y = y;
 	return (new);
 }
 
-t_wall			create_wall(t_vertex start, t_vertex end, t_vertex normal)
+t_wall			create_wall(t_point start, t_point end, t_vertex normal)
 {
 	t_wall		new;
 
 	new.start = start;
 	new.end = end;
 	new.normal = normal;
+	new.height = 1;//will change later when we add the possibility to change it
 	return (new);
 }
 
@@ -35,16 +48,17 @@ t_wall			create_emptywall(void)
 {
 	t_wall		new;
 
-	new.start = create_vertex(0,0);
-	new.end = create_vertex(0,0);
+	new.start = create_point(0,0);
+	new.end = create_point(0,0);
 	new.normal = create_vertex(0,0);
+	new.height = 0;//will change later when we add the possibility to change it
 	return (new);
 }
 
 void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 {
-	t_vertex 		tma;
-	t_vertex 		tmb;
+	t_point 		tma;
+	t_point 		tmb;
 	t_vertex 		tmn;
 	t_wall	 		wall;
 	t_wlist 		*tmwlst;
@@ -59,11 +73,11 @@ void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 	{
 		loop_til_release();
 		SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
-/*		map->endx = map->ox + ((map->x - 1) * map->base_gap);
+/*		map->endx = map->ox + ((map->x - 1) * map->base_gap); MOVED TO graphic_initc in map_init
 		map->endy = map->oy + ((map->y - 1) * map->base_gap);*/
 		ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
-		tma = create_vertex(mous->click1[0], mous->click1[1]);
-		tmb = create_vertex(mous->click2[0], mous->click2[1]); 
+		tma = create_point(mous->click1[0], mous->click1[1]);
+		tmb = create_point(mous->click2[0], mous->click2[1]); 
 		tmn.x = tma.y - tmb.y;
 		tmn.y = -(tma.x - tmb.x);
 		mous->nwalls++;

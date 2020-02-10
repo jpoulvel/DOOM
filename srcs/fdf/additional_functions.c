@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 14:22:49 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/04 15:29:26 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:24:04 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Replaces all other char than number, - or space into spaces
 */
-
+/*
 char		*ft_conform_line(char *str)
 {
 	int		i;
@@ -103,4 +103,4 @@ int			ft_color_negative(t_bres *bres)
 	else if (height <= -100)
 		color = WHITE;
 	return (color);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 15:02:28 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:21:39 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,6 @@ void			print_point_box(t_fdf *img, t_wlist *wlst)
 			SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap + 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
 }
 
-void			ft_print_walls(t_fdf *img, t_wlist *wlst)
-{
-	if(wlst != NULL)
-	{
-		while (wlst)
-		{
-			SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
-			SDL_RenderDrawLine(img->renderer, img->map->ox + wlst->wall.start.x * img->map->base_gap, img->map->oy + wlst->wall.start.y * img->map->base_gap, img->map->ox + wlst->wall.end.x * img->map->base_gap, img->map->oy + wlst->wall.end.y * img->map->base_gap);
-			print_point_box(img, wlst);
-			wlst = wlst->next;
-		}
-	}
-}
-
 void			ft_trace_line(t_point a, t_point b, t_fdf *img)
 {
 	int			gap;
@@ -50,7 +36,8 @@ void			ft_trace_line(t_point a, t_point b, t_fdf *img)
 	gap = img->map->base_gap;
 	ox = img->map->ox;
 	oy = img->map->oy;
-	color = ft_color_of_lower_element(a, b);
+	//color = ft_color_of_lower_element(a, b);
+	color = ft_hexa_to_ratio(LIGHT_BLUE);//fixed color until we adjust it
 	SDL_SetRenderDrawColor(img->renderer, color.r, color.g, color.b, 
 			color.a);
 	SDL_RenderDrawLine(img->renderer, ox + a.x * gap,
@@ -61,17 +48,29 @@ void			ft_print_lines(t_fdf *img, t_map *map)
 {
 	int			x;
 	int			y;
+	t_point		start;
+	t_point		end;
 
 	y = -1;
-	while (++y < map->y)
+	while (++y < map->height)
 	{
 		x = -1;
-		while (++x < map->x)
+		while (++x < map->width)
 		{
-			if (x < map->x - 1)
-				ft_trace_line(map->map[y][x], map->map[y][x + 1], img);
-			if (y < map->y - 1)
-				ft_trace_line(map->map[y][x], map->map[y + 1][x], img);
+			start.x = x;
+			start.y = y;
+			if (x < map->width - 1)
+			{
+				end.x = x + 1;
+				end.y = y;
+				ft_trace_line(start, end, img);
+			}
+			if (y < map->height - 1)
+			{
+				end.x = x;
+				end.y = y + 1;
+				ft_trace_line(start, end, img);
+			}
 		}
 	}
 }
@@ -80,4 +79,20 @@ void			ft_fill_image(t_fdf *img)
 {
 	ft_print_lines(img, img->map);
 //	ft_print_menu(img);
+}
+
+void			ft_fdf(t_map *map)
+{
+	t_fdf		*img;
+	t_mouse		mouse;
+
+	if (!(img = ft_ptr_init(NAME)))
+		return ;
+	mouse.loop = 0;
+	img->map = map;
+	//ft_cart_to_iso(map);
+	ft_fill_image(img);
+	SDL_RenderPresent(img->renderer);
+	bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));
+	ft_infinite_loop(img, mouse);
 }

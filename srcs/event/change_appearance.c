@@ -6,12 +6,12 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:42:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 17:41:07 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:26:00 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
-
+/*
 void		ft_modify_height(int key, t_fdf *ptr)
 {
 	if (ptr->map->zmax < 100)
@@ -28,7 +28,7 @@ void		ft_modify_height(int key, t_fdf *ptr)
 		if (key == 6 && ptr->map->proj == 'I')
 			ptr->map->base_h -= 0.1;
 	}
-}
+}*/
 
 void		ft_zoom(t_keys *key, t_map *map)
 {
@@ -52,7 +52,7 @@ void		ft_move(t_keys *key, t_map *map)
 	if (key->right == 1)
 		map->ox += 10;
 }
-
+/*
 void		ft_iso_or_cart(int key, t_fdf *ptr)
 {
 	int		i;
@@ -62,10 +62,10 @@ void		ft_iso_or_cart(int key, t_fdf *ptr)
 	if (key == 8 && ptr->map->proj == 'I')
 	{
 		i = -1;
-		while (++i < ptr->map->y)
+		while (++i < ptr->map->height)
 		{
 			j = -1;
-			while (++j < ptr->map->x)
+			while (++j < ptr->map->width)
 			{
 				iso = ptr->map->map[i][j];
 				ptr->map->map[i][j].x = iso.y + iso.x / 2;
@@ -76,7 +76,7 @@ void		ft_iso_or_cart(int key, t_fdf *ptr)
 	}
 	if (key == 34 && ptr->map->proj == 'C')
 		ft_cart_to_iso(ptr->map);
-}
+}*/
 /*
 void		ft_positive_or_negative(int key, t_fdf *ptr)
 {

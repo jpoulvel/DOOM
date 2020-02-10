@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:35:13 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/07 15:06:09 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:46:07 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int				ft_store_elements(t_wlist **list, char **tab, int count)
 {
 	t_wlist		*element;
 	t_wall		wall;
-	t_vertex	start;
-	t_vertex	end;
+	t_point		start;
+	t_point		end;
 	t_vertex	normal;
 
-	start = create_vertex(ft_atoi(tab[1]), ft_atoi(tab[2]));
-	end = create_vertex(ft_atoi(tab[3]), ft_atoi(tab[4]));
+	start = create_point(ft_atoi(tab[1]), ft_atoi(tab[2]));
+	end = create_point(ft_atoi(tab[3]), ft_atoi(tab[4]));
 	normal = create_vertex(ft_atoi(tab[5]), ft_atoi(tab[6]));
 	wall = create_wall(start, end, normal);
 	wall.type = *tab[0];//do I need to make a dup instead?

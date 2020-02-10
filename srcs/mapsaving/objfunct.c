@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:22:03 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/03 15:27:34 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:26:34 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst)
 	
 	loop_til_release();
 	SDL_GetMouseState(&x, &y);
-	map->endx = map->ox + ((map->x - 1) * map->base_gap);
-	map->endy = map->oy + ((map->y - 1) * map->base_gap);
+/*	map->endx = map->ox + ((map->x - 1) * map->base_gap);
+	map->endy = map->oy + ((map->y - 1) * map->base_gap);*/
 	ft_fix_coords(map, &x, &y);
 	if (*olst == NULL)
 	{

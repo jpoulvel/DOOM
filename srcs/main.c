@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/03 16:45:07 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:08:14 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,6 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 	}
 }
 
-void			ft_fdf(t_map *map)
-{
-	t_fdf		*img;
-	t_mouse		mouse;
-
-	if (!(img = ft_ptr_init(NAME)))
-		return ;
-	mouse.loop = 0;
-	img->map = map;
-	//ft_cart_to_iso(map);
-	ft_fill_image(img);
-	SDL_RenderPresent(img->renderer);
-	bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));
-	ft_infinite_loop(img, mouse);
-}
-
 int		ft_open_existing_map(char *map_name)
 {
 	int	fd;
@@ -77,6 +61,8 @@ int		ft_open_existing_map(char *map_name)
 	}
 	else
 		fd = open(map_name, O_RDWR | O_NOFOLLOW | O_APPEND);
+	/*	if (ft_check_first_line(fd) == 0)
+			return (0);*/
 	return (fd);
 }
 
@@ -87,7 +73,7 @@ int		ft_create_map(char *map_name, char *height, char *width)
 	int	w;
 
 	if ((fd = open(map_name, O_RDONLY | O_NOFOLLOW)) > 0)
-		return (ft_error("Map already exists, we cannot create it", 2));
+		return (ft_error("Map already exists, remove the size parmeters", 2));
 	h = ft_atoi(height);
 	w = ft_atoi(width);
 	if (h >= 1000 || w >= 1000)
@@ -100,7 +86,7 @@ int		ft_create_map(char *map_name, char *height, char *width)
 	return (fd);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int		fd;
 	t_map	*map;
@@ -117,12 +103,8 @@ int		main(int argc, char **argv)
 	}
 	else
 		return (ft_error("usage for existing map: ./fdf existing_map\nusage for new map: ./fdf new_map height width", 2));
-	/*CHANGED BECAUSE THE MAP FORMAT HAS CHANGED SO DIFFERENT PARSING
-	if (!(map = ft_parser(fd)))
-	{
-		map != NULL ? ft_free_map(map) : 0;
-		return (ft_error("Invalid map", 2));
-	}*/
-//	ft_fdf(map);
+	if (!(map = ft_map_init(fd)))
+		return (ft_error("Invalid map or map could not be created", 2));
+	ft_fdf(map);
 	return (0);
 }

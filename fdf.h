@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/07 14:52:13 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:44:28 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,23 @@ typedef struct		s_vertex
 	/*double*/int			y;
 }					t_vertex;
 
+
+typedef struct		s_point
+{
+	float			x;
+	float			y;
+	float			z;
+	int				color;
+	SDL_Color		col;
+}					t_point;
+
 typedef struct		s_wall
 {
 	char			type;
-	t_vertex		start;
-	t_vertex		end;
+	t_point			start;
+	t_point			end;
 	t_vertex		normal;
+	int				height;
 }					t_wall;
 /*
 typedef	struct		s_walls
@@ -104,29 +115,20 @@ typedef	struct		s_color
 	int				alpha;
 }					t_color;
 
-typedef struct		s_point
-{
-	float			x;
-	float			y;
-	float			z;
-	int				color;
-	SDL_Color		col;
-}					t_point;
-
 typedef struct		s_map
 {
-	t_point			**map;
+	//t_point			**map;
 	t_wlist 		*wlst;
-	int				x;
-	int				y;
+	int				height;
+	int				width;
 	int				ox;
 	int				oy;
 	float			base_gap;
 	float			base_h;
 	char			proj;
 	int				zmax;
-	int				endx;
-	int				endy;
+	int				endx;//maybe not needed anymore;
+	int				endy;//maybe not needed anymore
 }					t_map;
 
 typedef struct		s_item
@@ -205,7 +207,18 @@ char				**ft_check_first_line(char *line);
 t_wlist				*ft_store_first_line(char **tab);
 char				**ft_check_elements(char *line);
 int					ft_store_elements(t_wlist **list, char **tab, int count);
+t_map				*ft_map_init(int fd);
 
+
+/*
+**			WALLS and W_LIST
+*/
+t_vertex			create_vertex(double x, double y);
+t_point				create_point(float x, float y);
+t_wall				create_emptywall(void);
+t_wall 				create_wall(t_point start, t_point end, t_vertex normal);
+t_wlist 			*new_wlist(t_wall wall, int id);
+void				add_wlist(t_wlist **list, t_wlist *new);
 
 char				*ft_conform_line(char *str);
 void				ft_fill_image(t_fdf *img);
@@ -213,8 +226,10 @@ void				ft_free_map(t_map *map);
 void				ft_free_line(t_line *list);
 void				ft_free_fdf(t_fdf *fdf);
 void				ft_fdf(t_map *map);
+void				ft_infinite_loop(t_fdf *img, t_mouse mous);
 t_fdf				*ft_ptr_init(char *name);
 void				ft_print_lines(t_fdf *img, t_map *map);
+void				ft_trace_line(t_point a, t_point b, t_fdf *img);
 void				ft_render_text(t_fdf *img);
 void				ft_light_up_pixel(t_bres *bres, t_fdf *img);
 void				ft_origin(t_map *map);
@@ -241,10 +256,8 @@ void				ft_sub_fix_coords(t_map *map, int *x, int *y);
 void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
 int					ft_even_odd(int i);
 t_txt				*ft_txt_init(t_fdf *img);
-t_wall 				create_wall(t_vertex start, t_vertex end, t_vertex normal);
-void				add_wlist(t_wlist **list, t_wlist *new);
-t_wlist 			*new_wlist(t_wall wall, int id);
-t_vertex			create_vertex(double x, double y);
+
+
 void				ft_clear_and_render(t_fdf *img, t_wlist *wlst, t_olist *olst);
 void				ft_clear_and_render_menu(t_fdf *img, t_wlist *wlst, t_olist *olst);
 void				ft_print_walls(t_fdf *img, t_wlist *wlst);
@@ -258,5 +271,4 @@ void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
 void				ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls);
-t_wall				create_emptywall(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 12:56:35 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:29:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			ft_height_to_color(int height)
 		color = GREEN;
 	return (color);
 }
-
+/*
 void			ft_attribute_color_to_points(t_map *map)
 {
 	int			x;
@@ -55,7 +55,7 @@ void			ft_attribute_color_to_points(t_map *map)
 			map->map[x][y].col = ft_hexa_to_ratio(map->map[x][y].color);
 		}
 	}
-}
+}*/
 /*
 int			ft_color(t_bres *bres, int sign)
 {

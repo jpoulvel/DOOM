@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/28 18:10:04 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/07 18:07:00 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_fdf			*ft_ptr_init(char *name)
 	ptr->s_l = WIDTH * 4;
 	ptr->height = HEIGHT;
 	ptr->endian = 0;
-	ptr->color = ft_hexa_to_ratio(RED);
+	ptr->color = ft_hexa_to_ratio(LIGHT_BLUE);
 	ptr->pixels = (Uint8*)malloc(sizeof(Uint8) * (WIDTH * HEIGHT));
 	ft_bzero(ptr->pixels, (WIDTH * HEIGHT * sizeof(Uint8)));
 	return (ptr);
@@ -57,4 +57,26 @@ t_point		*ft_init_coord(int x, int y)
 	p->x = x;
 	p->y = y;
 	return (p);
+}
+
+t_map			*ft_map_init(int fd)
+{
+	t_wlist		*list;
+	t_map		*map;
+
+	if (!(list = ft_list_alloc(fd)))
+		return (NULL);
+	ft_putendl("List-alloc ok");//DEBUG
+	if (!(map = malloc(sizeof(t_map))))
+		return (NULL);
+	map->wlst = list;
+	map->width = list->wall.start.x;
+	map->height = list->wall.start.y;
+	map->base_gap = ft_gap(map);
+	map->base_h = ft_height(map);
+	map->zmax = 1;//when we can give altitude to elements, we'll parse the list to save the highest value.
+	ft_origin(map);
+/*	map->endx = map->ox + ((map->x - 1) * map->base_gap);
+	map->endy = map->oy + ((map->y - 1) * map->base_gap);*\apparently not needed*/
+	return (map);
 }
