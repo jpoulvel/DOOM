@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:54:02 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/07 19:13:07 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/12 12:32:34 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	ft_filter_walls(t_wlist *wlst, t_mouse *mous)
 		}
 	}
 	wlst = tmwlst;
-	if(!(mous->lsid = (int *)malloc(sizeof(int) * mous->n_id)))
-		exit(0);
+	if (mous->n_id > 0)
+	{
+		if(!(mous->lsid = (int *)malloc(sizeof(int) * mous->n_id)))
+			exit(0);
+	}
 	mous->n_id = 0;
 	if(wlst != NULL)
 	{
@@ -77,9 +80,10 @@ void ft_remove_list_element(t_wlist **list, int id)
 	t_wlist *p_stock;
 	t_wlist *n_stock;
 
+	printf("Id being removed: %i\n", id);
 	if (*list)
 	        while ((*list)->prev)
-	    	    (*list) = (*list)->prev;
+	    	    (*list) = (*list)->prev; //is crashing here
 	tmp = *list;
 	if (tmp->id == id)
 	{
@@ -121,8 +125,6 @@ void	rem_common_point(t_wlist **wlst, t_mouse *mous)
 				if ((*wlst)->id == mous->lsid[i])
 					break ;
 			}
-			else
-				return ;
 			*wlst = (*wlst)->next;
 		}
 		ft_remove_list_element(wlst, (*wlst)->id);
@@ -149,11 +151,15 @@ void	rem_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
 	else
 	{
 		loop_til_release();
-		SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
-		map->endx = map->ox + ((map->x - 1) * map->base_gap);
-		map->endy = map->oy + ((map->y - 1) * map->base_gap);
-		ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
-		rem_common_point(wlst, mous);
+		printf("Id es: %i\n", mous->n_id);
+		if (mous->n_id > 0)
+		{
+			SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
+			map->endx = map->ox + ((map->x - 1) * map->base_gap);
+			map->endy = map->oy + ((map->y - 1) * map->base_gap);
+			ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
+			rem_common_point(wlst, mous);
+		}
 	}
 	mous->click++;
 }
