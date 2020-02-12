@@ -6,13 +6,13 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:48:54 by jpoulvel          #+#    #+#             */
-/*   Updated: 2018/11/27 15:35:11 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:13:36 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isdigit(int c)
+int		ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);

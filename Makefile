@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/02/07 14:51:50 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/02/07 19:09:40 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = srcs/main.c \
 		srcs/fdf/free_functions.c \
 		srcs/fdf/colorize.c \
 		srcs/draw/print_map.c \
+		srcs/draw/print_walls.c \
 		srcs/draw/print_text.c \
 		srcs/draw/render.c \
 		srcs/event/menu_controls.c \

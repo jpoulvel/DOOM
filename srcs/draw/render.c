@@ -6,18 +6,18 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:49:15 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 15:09:00 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/10 20:30:41 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
-void			ft_clear_and_render(t_fdf *img, t_wlist *wlst, t_olist *olst)
+void			ft_clear_and_render(t_fdf *img/*, t_wlist *wlst, t_olist *olst*/)
 {
-	ft_print_obj(img, olst);
+	//ft_print_obj(img, olst);
 	ft_print_buttons(img);
 	ft_print_lines(img, img->map);
-	ft_print_walls(img, wlst);
+	ft_print_walls(img, img->map->wlst);
 	ft_render_text(img);
 	SDL_RenderPresent(img->renderer);
 	bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));
@@ -25,12 +25,12 @@ void			ft_clear_and_render(t_fdf *img, t_wlist *wlst, t_olist *olst)
 	SDL_RenderClear(img->renderer);
 }
 
-void			ft_clear_and_render_menu(t_fdf *img, t_wlist *wlst, t_olist *olst)
+void			ft_clear_and_render_menu(t_fdf *img/*, t_wlist *wlst, t_olist *olst*/)
 {
-	ft_print_obj(img, olst);
+//	ft_print_obj(img, olst);
 	ft_print_buttons(img);
 	ft_print_lines(img, img->map);
-	ft_print_walls(img, wlst);
+	ft_print_walls(img, img->map->wlst);
 	ft_render_text(img);
 	SDL_RenderPresent(img->renderer);
 	bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));

@@ -6,7 +6,7 @@
 /*   By: pchambon <pchambon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 11:42:55 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/01/30 14:41:50 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/10 15:13:58 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
-int					ft_isdigit(int c);
+int					ft_isdigit(char c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);

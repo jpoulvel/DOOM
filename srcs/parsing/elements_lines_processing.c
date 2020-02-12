@@ -6,26 +6,30 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:35:13 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/10 14:46:07 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/11 13:45:57 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
 /*
-** ft_atoi sends 0 if NaN or if the value was 0.
-** so if the value was 0, sends 1 to say OK, if not, sends 0 to say we hd NaN.
+** Checks that we only have digits in the lines. If not, returns 0.
 */
 
 int				ft_value_is_a_number(char *number)
 {
-	if (ft_atoi(number) == 0 && ft_strcmp(number, "0"))
-		return (0);
+	int			i;
+
+	i = -1;
+	while (number[++i])
+	{
+		if (!(ft_isdigit(number[i]) || number[i] == '-'))
+			return (0);
+	}
 	return (1);
 }
 /*
-** Checks that we have only numbers (or numbers followd by letters, in which case the letter will nt be taken into account)
-** If not, sends 0.
+** Checks that we have only numbers. If not, sends 0.
 */
 
 int				coordinates_are_correct(char **element)
@@ -45,6 +49,7 @@ int				coordinates_are_correct(char **element)
 ** Split by spaces, and check that
 ** - the first element is a known type (w/o/...)
 ** - we have eight numbers, nothing more.
+** If a value is incorrect, the line is incorrect and it will not be saved
 */
 
 char			**ft_check_elements(char *line)
@@ -62,7 +67,7 @@ char			**ft_check_elements(char *line)
 }
 
 /*
-** Store the values as vertexes in a t_wall structure.
+** Store the values as points and vertex in a t_wall structure.
 ** Then adds the wall at the end of the t_wlist
 */
 
@@ -79,7 +84,7 @@ int				ft_store_elements(t_wlist **list, char **tab, int count)
 	normal = create_vertex(ft_atoi(tab[5]), ft_atoi(tab[6]));
 	wall = create_wall(start, end, normal);
 	wall.type = *tab[0];//do I need to make a dup instead?
-	if (!(element = new_wlist(wall, count)))
+	if (!(element = new_wlist(wall/*, count*/)))
 		return (0);
 	add_wlist(list, element);
 	free_tab(tab);

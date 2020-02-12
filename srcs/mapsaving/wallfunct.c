@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/10 14:44:53 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:04:38 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_wall			create_wall(t_point start, t_point end, t_vertex normal)
 {
 	t_wall		new;
 
+	new.type = 'w';
 	new.start = start;
 	new.end = end;
 	new.normal = normal;
@@ -55,43 +56,42 @@ t_wall			create_emptywall(void)
 	return (new);
 }
 
-void	set_walls(t_map *map, t_mouse *mous, SDL_Event e, t_wlist **wlst)
+void	set_walls(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/)
 {
 	t_point 		tma;
 	t_point 		tmb;
 	t_vertex 		tmn;
 	t_wall	 		wall;
-	t_wlist 		*tmwlst;
+	t_wlist 		*new;
 
 	if ((ft_even_odd(mous->click) == 0))
 	{
+		ft_putendl("ft_even_odd(mouse->click = 0");
 		loop_til_release();
 		SDL_GetMouseState(&mous->click1[0], &mous->click1[1]);
 		ft_fix_coords(map, &mous->click1[0], &mous->click1[1]);
 	}
 	else
 	{
+		ft_putendl("ft_even_odd(mouse->click = 1");
 		loop_til_release();
 		SDL_GetMouseState(&mous->click2[0], &mous->click2[1]);
-/*		map->endx = map->ox + ((map->x - 1) * map->base_gap); MOVED TO graphic_initc in map_init
-		map->endy = map->oy + ((map->y - 1) * map->base_gap);*/
 		ft_fix_coords(map, &mous->click2[0], &mous->click2[1]);
 		tma = create_point(mous->click1[0], mous->click1[1]);
 		tmb = create_point(mous->click2[0], mous->click2[1]); 
 		tmn.x = tma.y - tmb.y;
 		tmn.y = -(tma.x - tmb.x);
-		mous->nwalls++;
-		if (*wlst == NULL)
-		{
-			wall = create_wall(tma, tmb, tmn);
-			*wlst = new_wlist(wall, mous->nwalls);
-		}
-		else
-		{
-			wall = create_wall(tma, tmb, tmn);
-			tmwlst = new_wlist(wall, mous->nwalls);
-			add_wlist(wlst, tmwlst);
-		}
+		wall = create_wall(tma, tmb, tmn);
+		//mous->nwalls++;
+		//THIS CASE SHOULD NOT HAPPEN BECAUSETHE FIRST ELEMENT WILL 
+		//ALWAYS BE THE MAP DIMENSIONS
+//		if (*wlst == NULL)
+//			*wlst = new_wlist(wall/*, mous->nwalls*/);
+//		else
+//		{
+		new = new_wlist(wall/*, mous->nwalls*/);
+		add_wlist(&map->wlst, new);
+//		}
 	}
 	mous->click++;
 }

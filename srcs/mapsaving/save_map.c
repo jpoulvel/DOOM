@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/04 12:44:38 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:29:44 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,64 @@ int			count_digits(t_wlist *wlst)
 	return (n);
 }
 
+int			wwrite_coords(t_wlist *wlst, int fd)
+{
+	ft_putendl("Ok entree write_coords");
+	ft_putchar(wlst->wall.type);
+	ft_putchar(' ');
+	ft_putnbr(/*ft_itoa(*/wlst->wall.start.x);
+	ft_putstr(" ");
+	ft_putnbr(/*ft_itoa(*/wlst->wall.start.y);
+	ft_putstr(" ");
+	ft_putnbr(wlst->wall.end.x);
+	ft_putstr(" ");
+	ft_putnbr(wlst->wall.end.y);
+	ft_putstr(" ");
+	ft_putnbr(wlst->wall.normal.x);
+	ft_putstr(" ");
+	ft_putnbr(wlst->wall.normal.y);
+	ft_putstr(" ");
+	return (1);
+}
+
 int			write_coords(t_wlist *wlst, int fd)
 {
-	ft_putstr_fd("w:", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.start.x), fd);
+	ft_putendl("Ok entree write_coords");
+	ft_putchar_fd(wlst->wall.type, fd);
+	ft_putchar_fd(' ', fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.start.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.start.y), fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.start.y, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.end.x), fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.end.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.end.y), fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.end.y, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.normal.x), fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.normal.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putstr_fd(ft_itoa(wlst->wall.normal.y), fd);
+	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.normal.y, fd);
 	ft_putendl_fd(" ", fd);
 	return (1);
 }
 
-void		ft_save_map(t_wlist *wlst, t_olist *olst, int nwalls)
+void		ft_save_map(t_fdf *img, t_olist *olst/*, int nwalls*/)
 {
 	int		fd;
+	t_wlist	*list;
 
-	if ((fd = open("saved_map", O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
+	list = img->map->wlst;
+	ft_putendl("Ok entree ft_save_map");
+	ft_putendl(img->map_name);
+	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
 		ft_error("Unable to write in the map file", 1);
-	if (wlst != NULL)
+	if (list != NULL)
 	{
-		while (wlst)
+		while (list)
 		{
-			write_coords(wlst, fd);
-			wlst = wlst->next;
+			write_coords(list, fd);
+			list = list->next;
 		}
-	}
 	ft_putstr("Map updated succesfully\n");
+	}
 	exit(0);
 }
