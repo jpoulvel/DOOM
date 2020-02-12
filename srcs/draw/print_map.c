@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:40:08 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 19:08:20 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void			ft_print_lines(t_fdf *img, t_map *map)
 		}
 	}
 }
-
+/*
 void			ft_fill_image(t_fdf *img)
 {
 	ft_print_lines(img, img->map);
 //	ft_print_menu(img);
 }
-
+*/
 void			ft_fdf(t_map *map, char *map_name)
 {
 	t_fdf		*img;
@@ -90,11 +90,7 @@ void			ft_fdf(t_map *map, char *map_name)
 		return ;
 	mouse.loop = 0;
 	img->map = map;
+	ft_clear_and_render(img);
 	//ft_cart_to_iso(map);
-	ft_fill_image(img);
-	SDL_RenderPresent(img->renderer);
-	bzero(img->pixels, WIDTH * HEIGHT * sizeof(Uint8));
-	ft_putendl("avant ft_infinite_loop");
 	ft_infinite_loop(img, mouse);
-	ft_putendl("Sortie ft_fdf");
 }

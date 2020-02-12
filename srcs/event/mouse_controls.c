@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 13:09:15 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:49:28 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,10 @@ void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
-			ft_putendl("Ok entree mouse_event");
 			if (mous->loop == 1)
-			{
-				ft_putendl("avant set_walls");
 				set_walls(map, mous, e/*, wlst*/);
-			}
 			if (mous->loop == 0)
-			{
-				ft_putendl("avant set_objects");
 				set_object(map, mous, e, olst);
-			}
 		}
 	}
 }

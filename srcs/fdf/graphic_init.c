@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:40:45 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:53:15 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_point		*ft_init_coord(int x, int y)
 
 t_map			*ft_map_init(int fd)
 {
-//	t_wlist		*list;
 	t_map		*map;
 
 	if (!(map = malloc(sizeof(t_map))))
@@ -70,13 +69,11 @@ t_map			*ft_map_init(int fd)
 	if (!(map->wlst = ft_list_alloc(fd)))
 		return (NULL);
 	ft_putendl("List-alloc ok");//DEBUG
-//	map->wlst = list;
 	map->width = map->wlst->wall.start.x;
 	map->height = map->wlst->wall.start.y;
 	map->base_gap = ft_gap(map);
 	map->base_h = ft_height(map);
 	map->zmax = 1;//when we can give altitude to elements, we'll parse the list to save the highest value.
-	ft_putendl("map init values ok");//DEBUG
 	ft_origin(map);
 	ft_putendl("map_origin ok");//DEBUG
 	map->endx = map->ox + ((map->width - 1) * map->base_gap);

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:53:31 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/01/29 17:06:20 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/12 19:10:37 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,11 @@ void			ft_print_pressed_button(t_fdf *img, int i)
 	{
 		SDL_SetRenderDrawColor(img->renderer, 255, 255, 0, 0);
 		SDL_RenderDrawLine(img->renderer, 1320, 240, 1550, 290);
-		SDL_RenderDrawLine(img->renderer, 1320, 240, 1550, 290);
 	}
 	if (i == 1)
-	{
 		SDL_RenderDrawLine(img->renderer, 1320, 120, 1550, 170);
-		SDL_RenderDrawLine(img->renderer, 1320, 120, 1550, 170);
-	}
 	if (i == 0)
-	{
 		SDL_RenderDrawLine(img->renderer, 1320, 180, 1550, 230);
-		SDL_RenderDrawLine(img->renderer, 1320, 180, 1550, 230);
-	}
 }
 
 void			ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e)

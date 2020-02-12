@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:39:23 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/12 18:47:59 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int		ft_create_map(char *map_name, char *height, char *width)
 	if (h >= 1000 || w >= 1000)
 		return (ft_error("Map should not exceed 1000 in height or width", 2));
 	fd = open(map_name, O_RDWR | O_CREAT | O_APPEND, 0666);
-	ft_putstr_fd(height, fd);//DEBUG
-	ft_putstr_fd(" ", fd);//DEBUG
-	ft_putendl_fd(width, fd);//DEBUG
+	ft_putstr_fd(height, fd);
+	ft_putstr_fd(" ", fd);
+	ft_putendl_fd(width, fd);
 	ft_putendl("Map created successfully");
 	return (fd);
 }
