@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/02/07 19:09:40 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/02/13 17:14:36 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRCS = srcs/main.c \
 		srcs/fdf/parsing.c \
 		srcs/fdf/additional_functions.c \
 		srcs/fdf/center_map.c \
-		srcs/fdf/graphic_init.c \
 		srcs/fdf/free_functions.c \
 		srcs/fdf/colorize.c \
 		srcs/draw/print_map.c \
@@ -33,6 +32,7 @@ SRCS = srcs/main.c \
 		srcs/mapsaving/save_map.c \
 		srcs/mapsaving/objfunct.c \
 		srcs/parsing/map_reading.c \
+		srcs/parsing/structures_init.c \
 		srcs/parsing/first_line_processing.c \
 		srcs/parsing/elements_lines_processing.c
 

@@ -6,50 +6,11 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 13:21:02 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:36:08 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void			ft_infinite_loop(t_fdf *img, t_mouse mous)
-{
-	int			isquit;
-	SDL_Event	event;
-//	t_wlist 	*wlst;
-	t_olist 	*olst;
-	t_keys		key;
-
-	mous.click = 0;
-//	mous.nwalls = 0;
-	mous.nobj = 0;
-	key.up = 0;
-	key.down = 0;
-	key.left = 0;
-	key.right = 0;
-	key.zoom_in = 0;
-	key.zoom_out = 0;
-	isquit = 0;
-//	wlst = NULL;
-	olst = NULL;
-	while (isquit == 0)
-	{
-		SDL_PollEvent(&event);
-		while (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN)
-		{
-			printf("moving");
-			if (event.type == SDL_QUIT)
-				exit (0);
-			ft_menu_event(img->map, &mous, event);
-			ft_print_pressed_button(img, mous.loop);
-			ft_clear_and_render(img/*, wlst, olst*/);
-			ft_keys_event(img->map, event, &key);
-			ft_mouse_event(img->map, &mous, event/*, &wlst*/, &olst);
-			if (mous.loop == 2)
-				ft_save_map(img, olst/*, mous.nwalls*/);
-		}
-	}
-}
 
 int		ft_open_existing_map(char *map_name)
 {
