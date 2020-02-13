@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 15:55:19 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:58:41 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,14 +203,13 @@ typedef	struct		s_bres
 **			PARSING
 */
 t_map				*ft_parser(int fd);
+t_map				*ft_map_init(int fd);
 t_wlist				*ft_list_alloc(int fd, int *height, int *width);
 char				**ft_check_first_line(char *line);
-t_wlist				*ft_store_first_line(char **tab);
-char				**ft_check_elements(char *line);
+//t_wlist				*ft_store_first_line(char **tab);
 int					ft_value_is_a_number(char *number);
+char				**ft_check_elements(char *line);
 int					ft_store_elements(t_wlist **list, char **tab/*, int count*/);
-t_map				*ft_map_init(int fd);
-
 
 /*
 **			WALLS and W_LIST
@@ -219,29 +218,66 @@ t_vertex			create_vertex(double x, double y);
 t_point				create_point(float x, float y);
 t_wall				create_emptywall(void);
 t_wall 				create_wall(t_point start, t_point end, t_vertex normal);
+void				ft_fix_coords(t_map *map, int *x, int *y);
+void				ft_sub_fix_coords(t_map *map, int *x, int *y);
 t_wlist 			*new_wlist(t_wall wall);
 void				add_wlist(t_wlist **list, t_wlist *new);
+void				ft_save_map(t_fdf *img, t_olist *olst);
+void				click_to_wall(t_map *map, t_mouse *mous, SDL_Event e);
+void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
 
-char				*ft_conform_line(char *str);
-void				ft_fill_image(t_fdf *img);
+/*
+**			CALCULATION HELPS
+*/
+void				ft_origin(t_map *map);
+int					ft_gap(t_map *map);
+float				ft_height(t_map *map);
+
+/*
+**			DRAWING
+*/
+void				ft_fdf(t_map *map, char *map_name);
+t_fdf				*ft_ptr_init(char *name);
+SDL_Color			ft_hexa_to_ratio(int color);
+void				ft_clear_and_render(t_fdf *img);
+void				ft_print_grid(t_fdf *img, t_map *map);
+void				ft_print_walls(t_fdf *img, t_wlist *wlst);
+void				ft_print_obj(t_fdf *img, t_olist *olst);
+void				ft_print_buttons(t_fdf *img);
+void				print_point_box(t_fdf *img, t_wlist *wlst);
+//void				ft_infinite_loop(t_fdf *img, t_mouse mous);
+void				ft_trace_line(t_point a, t_point b, t_fdf *img);
+
+/*
+**			EVENT
+*/
+void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e);
+void				ft_print_pressed_button(t_fdf *img, int i);
+void				ft_keys_event(t_map *map, SDL_Event e, t_keys *key);
+void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/, t_olist **olst);
+void				ft_zoom(t_keys *key, t_map *map);
+void				ft_move(t_keys *key, t_map *map);
+int					ft_even_odd(int i);
+void				loop_til_release();
+
+/*
+**			TEXT
+*/
+t_txt				*ft_txt_init(t_fdf *img);
+void				ft_render_text(t_fdf *img);
+
+/*
+**			FREE_FUNCTIONS
+*/
 void				ft_free_map(t_map *map);
 void				ft_free_line(t_line *list);
 void				ft_free_fdf(t_fdf *fdf);
-void				ft_fdf(t_map *map, char *map_name);
-void				ft_infinite_loop(t_fdf *img, t_mouse mous);
-t_fdf				*ft_ptr_init(char *name);
-void				ft_print_grid(t_fdf *img, t_map *map);
-void				ft_trace_line(t_point a, t_point b, t_fdf *img);
-void				ft_render_text(t_fdf *img);
+
+//void				ft_fill_image(t_fdf *img);
 void				ft_light_up_pixel(t_bres *bres, t_fdf *img);
-void				ft_origin(t_map *map);
-int					ft_gap(t_map *map);
 void				ft_get_controls(t_fdf *ptr);
-float				ft_height(t_map *map);
 int					ft_color(t_bres *bres, int color);
 void				ft_modify_height(int key, t_fdf *ptr);
-void				ft_zoom(t_keys *key, t_map *map);
-void				ft_move(t_keys *key, t_map *map);
 void				ft_iso_or_cart(int key, t_fdf *ptr);
 void				ft_positive_or_negative(int key, t_fdf *ptr);
 int					ft_color_positive(t_bres *bres);
@@ -250,28 +286,8 @@ void				ft_cart_to_iso(t_map *map);
 SDL_Color			ft_color_of_lower_element(t_point a, t_point b);
 void				ft_attribute_color_to_points(t_map *map);
 int					ft_height_to_color(int height);
-SDL_Color			ft_hexa_to_ratio(int color);
-void				ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/, t_olist **olst);
-void				ft_keys_event(t_map *map, SDL_Event e, t_keys *key);
-void				ft_fix_coords(t_map *map, int *x, int *y);
-void				ft_sub_fix_coords(t_map *map, int *x, int *y);
-void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
-int					ft_even_odd(int i);
-t_txt				*ft_txt_init(t_fdf *img);
-
-
-void				ft_clear_and_render(t_fdf *img/*, t_wlist *wlst, t_olist *olst*/);
-void				ft_clear_and_render_menu(t_fdf *img/*, t_wlist *wlst, t_olist *olst*/);
-void				ft_print_walls(t_fdf *img, t_wlist *wlst);
-void				ft_print_obj(t_fdf *img, t_olist *olst);
-void				ft_print_buttons(t_fdf *img);
-void				ft_print_pressed_button(t_fdf *img, int i);
-void				print_point_box(t_fdf *img, t_wlist *wlst);
-void				ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e);
-void				loop_til_release();
-void				set_walls(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/);
-void				set_object(t_map *map, t_mouse *mous, SDL_Event e, t_olist **olst);
+//void				ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous);
+void				ft_clear_and_render_menu(t_fdf *img);
 t_olist				*new_olist(t_vertex obj, int id);
 void				add_olist(t_olist **list, t_olist *new);
-void				ft_save_map(t_fdf *img, t_olist *olst/*, int nwalls*/);
 #endif

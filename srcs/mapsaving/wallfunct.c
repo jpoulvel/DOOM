@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/13 15:53:50 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:57:54 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_wall			create_emptywall(void)
 	return (new);
 }
 
-void	set_walls(t_map *map, t_mouse *mous, SDL_Event e)
+void	click_to_wall(t_map *map, t_mouse *mous, SDL_Event e)
 {
 	t_point 		tma;
 	t_point 		tmb;

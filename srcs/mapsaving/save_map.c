@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/13 15:57:05 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:47:19 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void		ft_save_map(t_fdf *img, t_olist *olst)
 
 	list = img->map->wlst;
 	ft_putendl("Ok entree ft_save_map");
-//	ft_putendl(img->map_name);
 	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
 		ft_error("Unable to write in the map file", 1);
 	if (list != NULL)

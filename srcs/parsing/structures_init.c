@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 13:19:59 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:26:00 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_fdf			*ft_ptr_init(char *name)
 	ptr->s_l = WIDTH * 4;
 	ptr->height = HEIGHT;
 	ptr->endian = 0;
-	ptr->color = ft_hexa_to_ratio(LIGHT_BLUE);
+	ptr->color = ft_hexa_to_ratio(LIGHT_BLUE);//MAKE THE COLOR CHANGEABLE
 	ptr->pixels = (Uint8*)malloc(sizeof(Uint8) * (WIDTH * HEIGHT));
 	ft_bzero(ptr->pixels, (WIDTH * HEIGHT * sizeof(Uint8)));
 	return (ptr);
