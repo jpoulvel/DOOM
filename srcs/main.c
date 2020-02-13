@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:47:59 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 13:21:02 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_open_existing_map(char *map_name)
 		fd = 0;
 	}
 	else
-		fd = open(map_name, O_RDWR | O_NOFOLLOW | O_APPEND);
+		fd = open(map_name, O_RDWR | O_NOFOLLOW /*| O_APPEND*/);
 	/*	if (ft_check_first_line(fd) == 0)
 			return (0);*/
 	return (fd);
@@ -76,11 +76,11 @@ int		ft_create_map(char *map_name, char *height, char *width)
 
 	if ((fd = open(map_name, O_RDONLY | O_NOFOLLOW)) > 0)
 		return (ft_error("Map already exists, remove the size parameters", 2));
-	h = ft_atoi(height);
-	w = ft_atoi(width);
-	if (h >= 1000 || w >= 1000)
-		return (ft_error("Map should not exceed 1000 in height or width", 2));
-	fd = open(map_name, O_RDWR | O_CREAT | O_APPEND, 0666);
+	if ((h = ft_atoi(height)) <= 0 || ((w = ft_atoi(width)) <= 0))
+//	if (h >= 1000 || w >= 1000)
+		return (ft_error("Dimensions should be greater than 0 and lesser than 100", 2));
+	if ((fd = open(map_name, O_CREAT | O_NOFOLLOW | O_WRONLY/* | O_APPEND*/, 0666)) <= 0)
+			return (ft_error("Unable to create file", 2));
 	ft_putstr_fd(height, fd);
 	ft_putstr_fd(" ", fd);
 	ft_putendl_fd(width, fd);
@@ -101,7 +101,7 @@ int			main(int argc, char **argv)
 	else if (argc == 4)
 	{
 		if ((fd = ft_create_map(argv[1], argv[2], argv[3]) <= 0))
-			return (ft_error("Unable to create file", 2));
+			return (0);
 	}
 	else
 		return (ft_error("usage for existing map: ./fdf existing_map\nusage for new map: ./fdf new_map height width", 2));

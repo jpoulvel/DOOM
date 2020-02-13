@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/12 18:29:44 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:57:05 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ int			count_digits(t_wlist *wlst)
 	}
 	return (n);
 }
-
+/*FOR DEBUGGING PURPOSE ONLY
 int			wwrite_coords(t_wlist *wlst, int fd)
 {
 	ft_putendl("Ok entree write_coords");
 	ft_putchar(wlst->wall.type);
 	ft_putchar(' ');
-	ft_putnbr(/*ft_itoa(*/wlst->wall.start.x);
+	ft_putnbr(wlst->wall.start.x);
 	ft_putstr(" ");
-	ft_putnbr(/*ft_itoa(*/wlst->wall.start.y);
+	ft_putnbr(wlst->wall.start.y);
 	ft_putstr(" ");
 	ft_putnbr(wlst->wall.end.x);
 	ft_putstr(" ");
@@ -64,7 +64,7 @@ int			wwrite_coords(t_wlist *wlst, int fd)
 	ft_putnbr(wlst->wall.normal.y);
 	ft_putstr(" ");
 	return (1);
-}
+}*/
 
 int			write_coords(t_wlist *wlst, int fd)
 {
@@ -86,14 +86,14 @@ int			write_coords(t_wlist *wlst, int fd)
 	return (1);
 }
 
-void		ft_save_map(t_fdf *img, t_olist *olst/*, int nwalls*/)
+void		ft_save_map(t_fdf *img, t_olist *olst)
 {
 	int		fd;
 	t_wlist	*list;
 
 	list = img->map->wlst;
 	ft_putendl("Ok entree ft_save_map");
-	ft_putendl(img->map_name);
+//	ft_putendl(img->map_name);
 	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
 		ft_error("Unable to write in the map file", 1);
 	if (list != NULL)

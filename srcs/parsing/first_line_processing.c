@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:33:11 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:08:47 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 11:07:02 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,10 @@ char			**ft_check_first_line(char *line)
 
 	tab = ft_strsplit(line, 32);
 	if (ft_value_is_a_number(tab[0]) && ft_value_is_a_number(tab[1]) && !tab[2])
-	{
-		ft_putendl("ok tab0 et tab1 isdigit");//DEBUG
 		return (tab);
-	}
 	else
 	{
-		ft_putendl("tab0 et tab1 pas digit");//DEBUG
 		free_tab(tab);
-		ft_putendl("freetab OK");//DEBUG
 		return (NULL);
 	}
 }

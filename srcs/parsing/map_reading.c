@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:32:10 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/07 14:55:31 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:42:10 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ char			**ft_check_line(char *line, int count)
 	char		**tab;
 
 	ft_putstr("count dans ft_check_line: ");//DEBUG
-	ft_putnbr(count);
-	ft_putstr("\n");
+	ft_putnbr(count);//DEBUG
+	ft_putstr("\n");//DEBUG
 	if (count == 0)
 		tab = ft_check_first_line(line);
 	else
@@ -38,7 +38,7 @@ char			**ft_check_line(char *line, int count)
 ** If not, it will continue but trash the filthy wall.
 */
 
-t_wlist			*ft_list_alloc(int fd)
+t_wlist			*ft_list_alloc(int fd, int *height, int *width)
 {
 	char		*linetmp;
 	char		**split_line;
@@ -47,24 +47,24 @@ t_wlist			*ft_list_alloc(int fd)
 
 	count = 0;
 	linetmp = NULL;
+	line_list = NULL;
 	while (get_next_line(fd, &linetmp) > 0)
 	{
 		if ((split_line = ft_check_line(linetmp, count)) != NULL)
 		{
-			ft_print_tab(split_line);//DEBUG
 			free(linetmp);
-			if (line_list == NULL)
+			if (count == 0)
 			{
-				if (!(line_list = ft_store_first_line(split_line)))
-					return (NULL);
+				*height = ft_atoi(split_line[0]);
+				*width = ft_atoi(split_line[1]);
 			}
 			else
 			{
-				if (!ft_store_elements(&line_list, split_line, count))
+				if (!ft_store_elements(&line_list, split_line))
 					ft_putendl("ft_store_elements = NULL");
 //					free the entire list;
 			}
-		count++;
+			count++;
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 17:29:36 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/12 13:04:38 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:53:50 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_wall			create_emptywall(void)
 	return (new);
 }
 
-void	set_walls(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/)
+void	set_walls(t_map *map, t_mouse *mous, SDL_Event e)
 {
 	t_point 		tma;
 	t_point 		tmb;
@@ -82,16 +82,13 @@ void	set_walls(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/)
 		tmn.x = tma.y - tmb.y;
 		tmn.y = -(tma.x - tmb.x);
 		wall = create_wall(tma, tmb, tmn);
-		//mous->nwalls++;
-		//THIS CASE SHOULD NOT HAPPEN BECAUSETHE FIRST ELEMENT WILL 
-		//ALWAYS BE THE MAP DIMENSIONS
-//		if (*wlst == NULL)
-//			*wlst = new_wlist(wall/*, mous->nwalls*/);
-//		else
-//		{
-		new = new_wlist(wall/*, mous->nwalls*/);
+		if (map->wlst == NULL)
+			map->wlst = new_wlist(wall);
+		else
+		{
+		new = new_wlist(wall);
 		add_wlist(&map->wlst, new);
-//		}
+		}
 	}
 	mous->click++;
 }

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:04:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:53:15 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 13:19:59 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ t_map			*ft_map_init(int fd)
 
 	if (!(map = malloc(sizeof(t_map))))
 		return (NULL);
-	if (!(map->wlst = ft_list_alloc(fd)))
-		return (NULL);
+	ft_putendl("ca arrive jusqu'ici");//DEBUG
+	if (!(map->wlst = ft_list_alloc(fd, &map->height, &map->width)))
+		ft_putendl_fd("No wall in the map", 2);
 	ft_putendl("List-alloc ok");//DEBUG
-	map->width = map->wlst->wall.start.x;
-	map->height = map->wlst->wall.start.y;
+/*	map->width = map->wlst->wall.start.x;
+	map->height = map->wlst->wall.start.y;*///WE DO NOT HAVE THE VALUE ANYMORE IN THE LIST. WE HAVE TO INITIALIZE THESE IN FT_FDF
+	printf("height = %d,\nwidth = %d\n", map->height, map->width);//DEBUG
 	map->base_gap = ft_gap(map);
 	map->base_h = ft_height(map);
 	map->zmax = 1;//when we can give altitude to elements, we'll parse the list to save the highest value.
 	ft_origin(map);
-	ft_putendl("map_origin ok");//DEBUG
 	map->endx = map->ox + ((map->width - 1) * map->base_gap);
 	map->endy = map->oy + ((map->height - 1) * map->base_gap);
 	return (map);

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 19:04:25 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:42:31 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:55:19 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,12 +203,12 @@ typedef	struct		s_bres
 **			PARSING
 */
 t_map				*ft_parser(int fd);
-t_wlist				*ft_list_alloc(int fd);
+t_wlist				*ft_list_alloc(int fd, int *height, int *width);
 char				**ft_check_first_line(char *line);
 t_wlist				*ft_store_first_line(char **tab);
 char				**ft_check_elements(char *line);
 int					ft_value_is_a_number(char *number);
-int					ft_store_elements(t_wlist **list, char **tab, int count);
+int					ft_store_elements(t_wlist **list, char **tab/*, int count*/);
 t_map				*ft_map_init(int fd);
 
 
@@ -219,7 +219,7 @@ t_vertex			create_vertex(double x, double y);
 t_point				create_point(float x, float y);
 t_wall				create_emptywall(void);
 t_wall 				create_wall(t_point start, t_point end, t_vertex normal);
-t_wlist 			*new_wlist(t_wall wall/*, int id*/);
+t_wlist 			*new_wlist(t_wall wall);
 void				add_wlist(t_wlist **list, t_wlist *new);
 
 char				*ft_conform_line(char *str);
@@ -230,7 +230,7 @@ void				ft_free_fdf(t_fdf *fdf);
 void				ft_fdf(t_map *map, char *map_name);
 void				ft_infinite_loop(t_fdf *img, t_mouse mous);
 t_fdf				*ft_ptr_init(char *name);
-void				ft_print_lines(t_fdf *img, t_map *map);
+void				ft_print_grid(t_fdf *img, t_map *map);
 void				ft_trace_line(t_point a, t_point b, t_fdf *img);
 void				ft_render_text(t_fdf *img);
 void				ft_light_up_pixel(t_bres *bres, t_fdf *img);

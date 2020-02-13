@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 19:07:13 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:57:41 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:24:06 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			ft_print_walls(t_fdf *img, t_wlist *wlst)
 {
 	if (wlst != NULL)
 	{
-		wlst = wlst->next;
+		ft_putendl("Ca entre dans wlst != NULL");
 		while (wlst)
 		{
 			printf("walls printed :(%f, %f)\n", wlst->wall.start.x, wlst->wall.start.y);

@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/12 19:08:20 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:55:09 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_trace_line(t_point a, t_point b, t_fdf *img)
 			oy + a.y * gap, ox + b.x * gap, oy + b.y * gap);
 }
 
-void			ft_print_lines(t_fdf *img, t_map *map)
+void			ft_print_grid(t_fdf *img, t_map *map)
 {
 	int			x;
 	int			y;
@@ -74,13 +74,7 @@ void			ft_print_lines(t_fdf *img, t_map *map)
 		}
 	}
 }
-/*
-void			ft_fill_image(t_fdf *img)
-{
-	ft_print_lines(img, img->map);
-//	ft_print_menu(img);
-}
-*/
+
 void			ft_fdf(t_map *map, char *map_name)
 {
 	t_fdf		*img;
