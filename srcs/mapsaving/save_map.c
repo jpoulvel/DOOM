@@ -6,12 +6,11 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/13 17:47:19 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/14 20:42:37 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-
+#include "../../fdf.h" 
 int			digit_num(int a)
 {
 	int		i;
@@ -86,6 +85,15 @@ int			write_coords(t_wlist *wlst, int fd)
 	return (1);
 }
 
+int			write_size(t_map *map, int fd)
+{
+	ft_putnbr_fd(map->height, fd);
+	ft_putstr_fd(" ", fd);
+	ft_putnbr_fd(map->width, fd);
+	ft_putendl_fd(" ", fd);
+	return (1);
+}
+
 void		ft_save_map(t_fdf *img, t_olist *olst)
 {
 	int		fd;
@@ -93,8 +101,9 @@ void		ft_save_map(t_fdf *img, t_olist *olst)
 
 	list = img->map->wlst;
 	ft_putendl("Ok entree ft_save_map");
-	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
+	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_TRUNC, 0666)) <= 0)
 		ft_error("Unable to write in the map file", 1);
+	write_size(img->map, fd);
 	if (list != NULL)
 	{
 		while (list)
