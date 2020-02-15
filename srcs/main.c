@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 13:58:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 17:36:08 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:28:38 by aruiz-ba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ int			main(int argc, char **argv)
 	}
 	else
 		return (ft_error("usage for existing map: ./fdf existing_map\nusage for new map: ./fdf new_map height width", 2));
-	if (!(map = ft_map_init(fd)))
-		return (ft_error("Invalid map or map could not be created", 2));
-	ft_fdf(map, argv[1]);
+	if (argc == 2)
+	{
+		if (!(map = ft_map_init(fd)))
+			return (ft_error("Invalid map or map could not be created", 2));
+		ft_fdf(map, argv[1]);
+	}
 	return (0);
 }
