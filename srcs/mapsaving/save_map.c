@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/13 17:47:19 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:00:06 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int			write_coords(t_wlist *wlst, int fd)
 	return (1);
 }
 
-void		ft_save_map(t_fdf *img, t_olist *olst)
+void		ft_save_map(t_fdf *img/*, t_olist *olst*/)
 {
 	int		fd;
 	t_wlist	*list;

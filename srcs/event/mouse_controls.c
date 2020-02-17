@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 17:58:30 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:59:48 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_put_point(t_fdf *img, t_map *map, t_mouse *mous)
 	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
 	SDL_RenderDrawLine(img->renderer, mous->click1[0], mous->click1[1], mous->click2[0], mous->click2[1]);
 }
-
+/*
 void			ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous)
 {
 	map->base_gap = ft_gap(map);
@@ -26,7 +26,7 @@ void			ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous)
 	//ft_attibute_color(map->map);
 	ft_put_point(img, map, mous);
 }
-
+*/
 int				ft_even_odd(int i)
 {
 	if (i % 2 == 0)
@@ -53,17 +53,24 @@ void			loop_til_release()
 	
 }
 
-void			ft_mouse_event(t_map *map, t_mouse *mous, SDL_Event e/*, t_wlist **wlst*/, t_olist **olst)
+/*
+** We'll need to change this functino to return int and print erroror messages if an action does not work"
+*/
+void			ft_mouse_event(t_fdf *img, t_mouse *mous, SDL_Event e, t_olist **olst)
 {
-
+	int			error;
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
-			if (mous->loop == 1)
-				click_to_wall(map, mous, e);
 			if (mous->loop == 0)
-				set_object(map, mous, e, olst);
+				/*error = */click_to_create_new_wall(img->map, mous, e);
+			if (mous->loop == 1)
+				/*error =*/ click_to_remove_wall(img->map, mous, e);
+			if (mous->loop == 2)
+				/*error = *///set_object(map, mous, e, olst);
+				ft_save_map(img);
 		}
 	}
+//	return (ft_error(error));
 }

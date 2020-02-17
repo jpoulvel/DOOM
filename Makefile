@@ -6,7 +6,7 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/02/13 17:14:36 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/02/14 17:14:26 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = srcs/main.c \
 		srcs/event/mouse_controls.c \
 		srcs/event/keys_controls.c \
 		srcs/event/change_appearance.c \
+		srcs/event/remove_walls.c \
 		srcs/mapsaving/tools.c \
 		srcs/mapsaving/new_wlist.c \
 		srcs/mapsaving/wallfunct.c \

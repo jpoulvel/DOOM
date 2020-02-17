@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:35:13 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/13 16:10:07 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:21:11 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int				ft_value_is_a_number(char *number)
 {
 	int			i;
 
+	if (number == NULL)
+		return (0);
 	i = -1;
 	while (number[++i])
 	{
@@ -84,7 +86,7 @@ int				ft_store_elements(t_wlist **list, char **tab/*, int count*/)
 	normal = create_vertex(ft_atoi(tab[5]), ft_atoi(tab[6]));
 	wall = create_wall(start, end, normal);
 	wall.type = *tab[0];
-	if (!(element = new_wlist(wall/*, count*/)))
+	if (!(element = new_wlist(wall)))
 		return (0);
 	if (*list == NULL)
 		*list = element;
