@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:53:31 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/12 19:10:37 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:23:35 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,26 @@ void			ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e)
 	int			tmx;
 	int			tmy;
 
-	if (e.type == SDL_MOUSEBUTTONDOWN)
+	if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
 			SDL_GetMouseState(&tmx, &tmy); // needs to be uncommented once this is fixed
-			if (tmx >= 1320 && tmx <= 1550 && tmy >= 230 && tmy <= 290)
-			{
-				mous->loop = 2;
-				loop_til_release();
-			} 
 			if (tmx >= 1320 && tmx <= 1550 && tmy >= 120 && tmy <= 170)
 			{
 				mous->loop = 1;
 				loop_til_release();
-			} 
-			if (tmx >= 1320 && tmx <= 1550 && tmy >= 180 && tmy <= 230)
+			}
+			else if (tmx >= 1320 && tmx <= 1550 && tmy >= 180 && tmy <= 230)
 			{
 				mous->loop = 0;
 				loop_til_release();
-			} 
+			}
+			else if (tmx >= 1320 && tmx <= 1550 && tmy >= 230 && tmy <= 290)
+			{
+				mous->loop = 2;
+				loop_til_release();
+			}
 			//every if checks if you click on every button and if you do it runs wall placing button, objects and enemy placing 
 			//or undo/remove/move elements
 		}

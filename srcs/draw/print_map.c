@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:40:41 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/15 16:59:03 by aruiz-ba         ###   ########.fr       */
+/*   Updated: 2020/02/17 16:08:46 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void			print_point_box(t_fdf *img, t_wlist *wlst)
 {
 	SDL_SetRenderDrawColor(img->renderer, 0, 255, 255, 255);
 	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) - 5);
-	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5); SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
+	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
+	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
 	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.start.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap + 5), (img->map->ox + wlst->wall.start.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.start.y * img->map->base_gap) + 5);
-
 	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) - 5);
 	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap - 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
 	SDL_RenderDrawLine(img->renderer, (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap - 5), (img->map->ox + wlst->wall.end.x * img->map->base_gap + 5), (img->map->oy + wlst->wall.end.y * img->map->base_gap) + 5);
@@ -73,41 +73,53 @@ void			ft_print_grid(t_fdf *img, t_map *map)
 		}
 	}
 }
+void			ft_mouse_init(t_mouse *mous)
+{
+//	mous->posx = 0;apparently not used
+//	mous->posy = 0;apparently not used
+/*	mous->click1[0] = 5;
+	mous->click1[1] = 5;
+	mous->click2[0] = 5;
+	mous->click2[1] = 5;*/
+	mous->click = 0;
+//	mous.nwalls = 0;
+	mous->nobj = 0;
+	mous->loop = 1;
+}
 
-void			ft_infinite_loop(t_fdf *img, t_mouse mous)
+void			ft_key_init(t_keys *key)
+{
+	key->up = 0;
+	key->down = 0;
+	key->left = 0;
+	key->right = 0;
+	key->zoom_in = 0;
+	key->zoom_out = 0;
+}
+
+void			ft_infinite_loop(t_fdf *img, t_mouse *mous)
 {
 	int			isquit;
 	SDL_Event	event;
-//	t_wlist 	*wlst;
 	t_olist 	*olst;
 	t_keys		key;
 
-	mous.click = 0;
-//	mous.nwalls = 0;
-	mous.nobj = 0;
-	key.up = 0;
-	key.down = 0;
-	key.left = 0;
-	key.right = 0;
-	key.zoom_in = 0;
-	key.zoom_out = 0;
+	ft_key_init(&key);
 	isquit = 0;
-//	wlst = NULL;
 	olst = NULL;
 	while (isquit == 0)
 	{
 		SDL_PollEvent(&event);
 		while (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_KEYDOWN)
 		{
-			printf("moving");
 			if (event.type == SDL_QUIT)
 				exit (0);
-			ft_menu_event(img->map, &mous, event);
-			ft_print_pressed_button(img, mous.loop);
+			ft_menu_event(img->map, mous, event);
+			ft_print_pressed_button(img, mous->loop);
 			ft_clear_and_render_menu(img/*, wlst, olst*/);
 			ft_keys_event(img->map, event, &key);
-			ft_mouse_event(img->map, &mous, event/*, &wlst*/, &olst);
-			if (mous.loop == 2)
+			ft_mouse_event(img->map, mous, event/*, &wlst*/, &olst);
+			if (mous->loop == 2)
 				ft_save_map(img, olst/*, mous.nwalls*/);
 		}
 	}
@@ -116,13 +128,13 @@ void			ft_infinite_loop(t_fdf *img, t_mouse mous)
 void			ft_fdf(t_map *map, char *map_name)
 {
 	t_fdf		*img;
-	t_mouse		mouse;
+	t_mouse		mous;
 
 	if (!(img = ft_ptr_init(map_name)))
 		return ;
-	mouse.loop = -1;
+	ft_mouse_init(&mous);
 	img->map = map;
 	ft_clear_and_render(img);
 	//ft_cart_to_iso(map);
-	ft_infinite_loop(img, mouse);
+	ft_infinite_loop(img, &mous);
 }
