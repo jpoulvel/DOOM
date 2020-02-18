@@ -6,12 +6,13 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:09:34 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/17 15:00:06 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:16:33 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
+/*THE TWO FUNCTIONS BELOW ARE NOT USED ANYMORE
 int			digit_num(int a)
 {
 	int		i;
@@ -44,7 +45,7 @@ int			count_digits(t_wlist *wlst)
 		}
 	}
 	return (n);
-}
+}*/
 /*FOR DEBUGGING PURPOSE ONLY
 int			wwrite_coords(t_wlist *wlst, int fd)
 {
@@ -68,33 +69,42 @@ int			wwrite_coords(t_wlist *wlst, int fd)
 
 int			write_coords(t_wlist *wlst, int fd)
 {
-	ft_putendl("Ok entree write_coords");
 	ft_putchar_fd(wlst->wall.type, fd);
 	ft_putchar_fd(' ', fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.start.x, fd);
+	ft_putnbr_fd(wlst->wall.start.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.start.y, fd);
+	ft_putnbr_fd(wlst->wall.start.y, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.end.x, fd);
+	ft_putnbr_fd(wlst->wall.end.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.end.y, fd);
+	ft_putnbr_fd(wlst->wall.end.y, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.normal.x, fd);
+	ft_putnbr_fd(wlst->wall.normal.x, fd);
 	ft_putstr_fd(" ", fd);
-	ft_putnbr_fd(/*ft_itoa(*/wlst->wall.normal.y, fd);
-	ft_putendl_fd(" ", fd);
+	ft_putnbr_fd(wlst->wall.normal.y, fd);
+	ft_putchar_fd('\n', fd);
 	return (1);
 }
 
-void		ft_save_map(t_fdf *img/*, t_olist *olst*/)
+int			write_size(t_map *map, int fd)
+{
+	ft_putnbr_fd(map->height, fd);
+	ft_putstr_fd(" ", fd);
+	ft_putnbr_fd(map->width, fd);
+	ft_putendl_fd("", fd);
+	return (1);
+}
+
+void		ft_save_map(t_fdf *img,  t_olist *olst)
 {
 	int		fd;
 	t_wlist	*list;
 
 	list = img->map->wlst;
 	ft_putendl("Ok entree ft_save_map");
-	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_APPEND, 0666)) <= 0)
+	if ((fd = open(img->map_name, O_RDWR /*| O_CREAT*/ | O_TRUNC, 0666)) <= 0)
 		ft_error("Unable to write in the map file", 1);
+	write_size(img->map, fd);
 	if (list != NULL)
 	{
 		while (list)

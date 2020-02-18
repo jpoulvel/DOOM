@@ -6,18 +6,13 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/02/14 17:14:26 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/02/18 13:15:16 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
 SRCS = srcs/main.c \
-		srcs/fdf/parsing.c \
-		srcs/fdf/additional_functions.c \
-		srcs/fdf/center_map.c \
-		srcs/fdf/free_functions.c \
-		srcs/fdf/colorize.c \
 		srcs/draw/print_map.c \
 		srcs/draw/print_walls.c \
 		srcs/draw/print_text.c \
@@ -25,9 +20,7 @@ SRCS = srcs/main.c \
 		srcs/event/menu_controls.c \
 		srcs/event/mouse_controls.c \
 		srcs/event/keys_controls.c \
-		srcs/event/change_appearance.c \
 		srcs/event/remove_walls.c \
-		srcs/mapsaving/tools.c \
 		srcs/mapsaving/new_wlist.c \
 		srcs/mapsaving/wallfunct.c \
 		srcs/mapsaving/save_map.c \
@@ -35,7 +28,16 @@ SRCS = srcs/main.c \
 		srcs/parsing/map_reading.c \
 		srcs/parsing/structures_init.c \
 		srcs/parsing/first_line_processing.c \
-		srcs/parsing/elements_lines_processing.c
+		srcs/parsing/elements_lines_processing.c \
+		srcs/tools/additional_functions.c \
+		srcs/tools/center_map.c \
+		srcs/tools/free_functions.c \
+		srcs/tools/colorize.c \
+		srcs/tools/change_appearance.c \
+		srcs/tools/create_map_elements.c \
+		srcs/tools/mouse_and_key_init.c \
+		srcs/tools/text_init.c \
+		srcs/tools/fix_coords.c
 
 OBJ = $(SRCS:.c=.o)
 

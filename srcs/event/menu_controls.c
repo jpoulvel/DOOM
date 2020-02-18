@@ -6,7 +6,7 @@
 /*   By: aruiz-ba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:53:31 by aruiz-ba          #+#    #+#             */
-/*   Updated: 2020/02/17 15:03:34 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/18 12:59:40 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,16 @@ void			ft_menu_event(t_map *map, t_mouse *mous, SDL_Event e)
 			SDL_GetMouseState(&tmx, &tmy); // needs to be uncommented once this is fixed
 			if (tmx >= 1320 && tmx <= 1550 && tmy >= 120 && tmy <= 170)
 			{
-				ft_putendl("Clic dans 1ere case");
-				mous->loop = 0;
+				mous->loop = 1;
 				loop_til_release();
 			}
 			if (tmx >= 1320 && tmx <= 1550 && tmy >= 180 && tmy <= 230)
 			{
-				ft_putendl("Clic dans 2eme case");
-				mous->loop = 1;
+				mous->loop = 0;
 				loop_til_release();
 			}
 			if (tmx >= 1320 && tmx <= 1550 && tmy >= 230 && tmy <= 290)
 			{
-				ft_putendl("Clic dans 3eme case");
 				mous->loop = 2;
 				loop_til_release();
 			}

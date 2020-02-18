@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 15:21:40 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/14 20:01:54 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/17 19:29:02 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int				click_to_remove_wall(t_map *map, t_mouse *mous, SDL_Event e)
 	t_point 	end;
 	t_wall		wall;
 
-	wall = click_to_wall_coord(map, mous, e);
+	click_to_wall_coord(&wall,map, mous, e);
 	ft_remove_wall(wall, &map->wlst);
 	return (0);
 }

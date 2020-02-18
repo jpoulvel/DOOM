@@ -6,7 +6,7 @@
 /*   By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 14:38:23 by jpoulvel          #+#    #+#             */
-/*   Updated: 2020/02/17 14:59:48 by jpoulvel         ###   ########.fr       */
+/*   Updated: 2020/02/18 13:11:31 by jpoulvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,7 @@ void			ft_put_point(t_fdf *img, t_map *map, t_mouse *mous)
 	SDL_SetRenderDrawColor(img->renderer, 0, 255, 0, 255);
 	SDL_RenderDrawLine(img->renderer, mous->click1[0], mous->click1[1], mous->click2[0], mous->click2[1]);
 }
-/*
-void			ft_fill_image_line(t_fdf *img, t_map *map, t_mouse *mous)
-{
-	map->base_gap = ft_gap(map);
-	map->base_h = ft_height(map);
-	//ft_origin(map);
-	//ft_attibute_color(map->map);
-	ft_put_point(img, map, mous);
-}
-*/
+
 int				ft_even_odd(int i)
 {
 	if (i % 2 == 0)
@@ -54,7 +45,7 @@ void			loop_til_release()
 }
 
 /*
-** We'll need to change this functino to return int and print erroror messages if an action does not work"
+** We'll need to change this function to return int and print error messages if an action does not work"
 */
 void			ft_mouse_event(t_fdf *img, t_mouse *mous, SDL_Event e, t_olist **olst)
 {
@@ -63,13 +54,12 @@ void			ft_mouse_event(t_fdf *img, t_mouse *mous, SDL_Event e, t_olist **olst)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
-			if (mous->loop == 0)
-				/*error = */click_to_create_new_wall(img->map, mous, e);
 			if (mous->loop == 1)
+				/*error = */click_to_create_new_wall(img->map, mous, e);
+			if (mous->loop == 0)
 				/*error =*/ click_to_remove_wall(img->map, mous, e);
-			if (mous->loop == 2)
-				/*error = *///set_object(map, mous, e, olst);
-				ft_save_map(img);
+	//		if (mous->loop == 0)
+	//			/*error = */set_object(img->map, mous, e, olst);
 		}
 	}
 //	return (ft_error(error));
