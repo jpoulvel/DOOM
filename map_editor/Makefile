@@ -6,89 +6,89 @@
 #    By: jpoulvel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/07 14:02:55 by jpoulvel          #+#    #+#              #
-#    Updated: 2020/02/18 13:27:13 by jpoulvel         ###   ########.fr        #
+#    Updated: 2020/03/04 22:27:44 by jpoulvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = map_editor
+CFLAGS = -Wall -Werror -Wextra -MMD `sdl2-config --cflags`
 
-SRCS = srcs/main.c \
-		srcs/draw/print_map.c \
-		srcs/draw/print_walls.c \
-		srcs/draw/print_text.c \
-		srcs/draw/render.c \
-		srcs/event/menu_controls.c \
-		srcs/event/mouse_controls.c \
-		srcs/event/keys_controls.c \
-		srcs/event/remove_walls.c \
-		srcs/mapsaving/new_wlist.c \
-		srcs/mapsaving/wallfunct.c \
-		srcs/mapsaving/save_map.c \
-		srcs/mapsaving/objfunct.c \
-		srcs/parsing/map_reading.c \
-		srcs/parsing/structures_init.c \
-		srcs/parsing/first_line_processing.c \
-		srcs/parsing/elements_lines_processing.c \
-		srcs/tools/additional_functions.c \
-		srcs/tools/center_map.c \
-		srcs/tools/free_functions.c \
-		srcs/tools/colorize.c \
-		srcs/tools/change_appearance.c \
-		srcs/tools/create_map_elements.c \
-		srcs/tools/mouse_and_key_init.c \
-		srcs/tools/text_init.c \
-		srcs/tools/fix_coords.c
+NAME = mapeditor
 
-OBJ = $(SRCS:.c=.o)
+LIBFT = ../libft/libft.a
 
-LIB_DIR = libft
+SRC = init/main.c \
+	   draw/draw_menu.c \
+	   draw/draw_blocks.c \
+	   draw/print_grid.c \
+	   draw/render.c \
+	   draw/draw_line.c \
+	   event/infinite_loop.c \
+	   event/keys_controls.c \
+	   event/menu_controls.c \
+	   event/modify_map.c \
+	   event/mouse_controls.c \
+	   event/save_new_map.c \
+	   parsing/check_map.c \
+	   parsing/map_copy.c \
+	   parsing/parsing.c \
+	   tools/colorize.c \
+	   tools/fix_coords.c \
+	   tools/free_functions.c \
+	   tools/free_path_tab.c \
+	   tools/gnl_incoming_map.c \
+	   init/center_map.c \
+	   init/mouse_and_key_init.c \
+	   init/surfaces_init.c \
+	   init/structures_init.c \
+	   textures/load_textures.c
 
-INCL = fdf.h \
-	   $(LIB_DIR)/libft.a \
-	#   -I./frameworks/SDL2.framework/Versions/A/Headers \
-	   -I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
-	   -I./frameworks/SDL2_image.framework/Versions/A/Headers \
-	   -I./frameworks/SDL2_mixer.framework/Headers \
-	   -I./frameworks/SDL2_net.framework/Headers \
-	   -F./frameworks
+SRC_DIR = ./
+OBJ_DIR = obj/
+INC_DIR = hdr/
 
-FLAGS = -Wall -Wextra -Werror -I $(INCL)
+SRCS= $(addprefix $(SRC_DIR),$(SRC))
+OBJ= $(SRC:.c=.o)
+DPD= $(SRC:.c=.d)
 
-SDLFLAGS = -lSDL2-2.0.0  -lSDL2_ttf-2.0.0 `sdl2-config --cflags --libs`
+OBJ_SUBDIRS= draw event parsing tools init textures
+OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
+SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
+LIB= `sdl2-config --libs` \
+	 `sdl2-config --libs`_ttf\
+	 -L ../libft -lft
+INCLUDES= ../hdr/map_editor.h
 
-FRAMEWORKS = -F./frameworks \
-			 -rpath ./frameworks \
-			 -framework OpenGL -framework AppKit -framework OpenCl \
-			 -framework SDL2 -framework SDL2_ttf -framework SDL2_image \
-			 -framework SDL2_mixer -framework SDL2_net
+all: $(SUBDIRS)
+	@$(MAKE) -j ../$(NAME)
 
-CC = gcc -g
+../$(NAME): $(OBJS) $(INCLUDES)
+	@echo "\033[2K \033[A"
+	@clang $(CFLAGS) -o ../$(NAME) $(OBJS) $(LIB) $(LIBFT) -lm
+	@echo "\033[32m[$(NAME)]: compiled\033[0m"
 
-all: Makefile $(NAME)
+$(SUBDIRS):
+	@ mkdir -p $(SUBDIRS)
 
-$(NAME): FORCE LIB $(OBJ)
-	@gcc -o $(NAME) $(FLAGS) $(OBJ) $(SDLFLAGS)
-
-%.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS) $(SDLFLAGS)
-	@echo $<
-
-LIB:
-	@$(MAKE) -C $(LIB_DIR)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(LIBFT)
+	@ mkdir -p $(OBJ_DIR)
+	@ mkdir -p $(SUBDIRS)
+	@echo "\033[2K [$(NAME)]: Compilation of $< \033[A"
+	@clang $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
-	@$(MAKE) clean -C $(LIB_DIR)
+	@rm -rf $(OBJ_DIR)
+	@echo "\033[33m[$(NAME)]: OBJ deleted\033[0m"
 
 fclean: clean
-	rm -f $(NAME)
-	@$(MAKE) fclean -C $(LIB_DIR)
+	@rm -f ../$(NAME)
+	@echo "\033[31m[$(NAME)]: deleted\033[0m"
 
-re: fclean $(NAME)
+installSDL:
+	sudo apt-get install libsdl2-dev
+	sudo apt-get install libsdl2-ttf-dev
 
-san : FORCE LIB $(OBJ)
-	@gcc -o $(NAME) -fsanitize=address $(FLAGS) $(OBJ) $(SDLFLAGS)
+re : fclean all
 
-FORCE:
+.PHONY: all, clean, fclean, re
 
-.PHONY: all clean fclean re FORCE
+-include $(DPD)
